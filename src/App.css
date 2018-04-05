@@ -1,0 +1,108 @@
+:root {
+	--chalk-yellow: #FFD700;
+	--chalk-lightblue: #96CCFF;
+	--chalk-lightgreen: #9EEBCF;
+}
+
+.primary-color {
+	color: var(--chalk-yellow) /*todo: implement theme toggling*/
+}
+
+.secondary-color {
+	color: var(--chalk-lightblue)
+}
+
+.tertiary-color {
+	color: var(--chalk-lightgreen)
+}
+
+.anki-card-entire {
+	text-align: center;
+	margin: 1em;
+	font-size: 1.5em;
+}
+
+.anki-card-image {
+	position: relative;
+}
+
+.linja-pona {
+	height: 4em;
+}
+
+.example-image {
+	height: 8em;
+}
+
+.big {
+	font-size: 2em
+}
+
+/*todo: change this so it only activates for zen_bw theme*/
+.low {
+	opacity: 0.5;
+}
+
+.high {
+	font-weight: 600
+}
+
+.card-element {
+	position: relative;
+}
+
+.card-element-line {
+	position: relative;
+}
+
+/*uncomment below for wire-frames*/
+/*
+.anki-card-audio { border: 1px solid red }
+.card-element { border: 1px solid blue }
+.card-element-line { border: 1px solid purple }
+.anki-card-image { border: 1px solid green }
+.card-element-span { border: 1px solid orange }
+*/
+/*WIREFRAMES END*/
+
+/*MARGINS & PADDING BEGIN*/
+/*
+.anki-card-audio, .card-element, .card-element-line, .anki-card-image, .card-element-span {
+	padding: 2px;
+	margin: 2px;
+}
+*/
+/*MARGINS & PADDING END*/
+
+.element-tag {
+	font-size: 10px;
+	position: absolute;
+	padding: 2.5px;
+	left: 5px;
+	top: 5px;
+	background-color: lightgray;
+}
+
+.play-button {
+	font-size: 50px;
+}
+
+.full-height-bg img {
+	position: absolute;
+	height: 100vh;
+	z-index: -1;
+	top: 0;
+	left: 0;
+}
+
+/*blackboard theme colors*/
+/*
+.element-tag { }
+.play-button { }
+.field-term { color: var(--chalk-yellow) }
+.field-examples { color: var(--chalk-lightblue) }
+.field-transliteration { }
+.text-prompt { color: var(--chalk-lightgreen) }
+.tags { color: var(--chalk-lightgreen) }
+.special-field-category { color: var(--chalk-lightgreen) }
+*/
