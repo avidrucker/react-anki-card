@@ -1,0 +1,4 @@
+How to render a multi-line text string in React:
+https://stackoverflow.com/questions/35351706/how-to-render-a-multi-line-text-string-in-react
+es6 template literals:
+https://stackoverflow.com/questions/21668025/react-jsx-access-props-in-quotes

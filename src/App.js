@@ -29,8 +29,6 @@ const HEAR_PROMPT = HEAR_PROMPTS[PROMPT_INDEX];
 const WRITE_PROMPT = TRANSCRIBE_PROMPTS[PROMPT_INDEX];
 const WRITE_PROMPT2 = WRITE_PROMPTS[PROMPT_INDEX];
 
-
-//todo: add mnemonic device component
 //todo: implement "readLinjaPona (translate L2-to-L1), writeLinjaPona(dictate), hear(listen), look(picture), recall(translate L1-to-L2)" (WIP)
 //todo: implement REACT2HTML markup where the page is exportable to Anki compatible HTML (WIP)
 //todo: enable IMMERSION_MODE where all L1 is hidden
@@ -38,29 +36,9 @@ const WRITE_PROMPT2 = WRITE_PROMPTS[PROMPT_INDEX];
 //todo: implement full accessibility compliance (consult Taylor on how-to)
 //todo: implement toki pona, then French, then Japanese WIP
 // REF: `${size} ${importance}`
-//DONE: enable theming --> research for 10 minutes theming options, weigh pros & cons, and make a decision with no more than 10 minutes further deliberation --> CUSTOM TACHYONS
+//enable theming --> research for 10 minutes theming options, weigh pros & cons, and make a decision with no more than 10 minutes further deliberation --> CUSTOM TACHYONS
 
-/*
-How to render a multi-line text string in React:
-https://stackoverflow.com/questions/35351706/how-to-render-a-multi-line-text-string-in-react
-es6 template literals:
-https://stackoverflow.com/questions/21668025/react-jsx-access-props-in-quotes
-*/
-
-/*
-
-burn down list:
-1. implement RECALL: DONE
-2. implement READ_TP w/ two optional prompts ("read this out loud:","o toki e ni kepeken uta kalama sina")  - DONE
-3. create version of CardElement where all play buttons render on the same row in an "audio button group block" - DONE
-4. implement HEAR - DONE
-4. implement LOOK
-5. ...
-
-*/
-//"recall","readLinjaPona","hear","",""
-
-/*low level field component, not to be used directly*/
+/*low level field component, not to be used directly (composition as child only) */
 const AudioSpan = ({field}) => (
 	<span className="play-button" >
 		{field}
@@ -91,7 +69,7 @@ const ElementLabel = ({text}) => (
 	</span>
 );
 
-/*general dynamic span elements*/
+/*general dynamic span element, again not to be used directly (composition as child only)*/
 const CardElementSpan = ({name, field, size, additionalClass, importance, hintedOut}) => (
 	<span className={`${size} ${importance} card-element-span ${additionalClass}`}>
 		{!EXPORT_MODE && field.split("\n").map(i => {
@@ -113,7 +91,7 @@ const CardElementSpan = ({name, field, size, additionalClass, importance, hinted
 	</span>
 );
 
-/*use this component to display text that isn't dynamic/conditional*/
+/*use this component to display text that isn't dynamic/conditional (composition as child only)*/
 const StaticCardElement = ({name, text, size, additionalClass, importance, hintedOut}) => (
 	<div className="card-element">
 		{SHOW_ELEMENT_NAME && <ElementLabel text={name} />}
@@ -130,7 +108,7 @@ const StaticCardElement = ({name, text, size, additionalClass, importance, hinte
 	</div>
 );
 
-/*general dynamic block elements*/
+/*general dynamic block elements (composition as child only)*/
 const CardElement = ({name, field, size, additionalClass, importance, hintedOut}) => (
 	<div className="card-element">
 		{SHOW_ELEMENT_NAME && <ElementLabel text={name} />}
@@ -226,7 +204,16 @@ const PromptText = ({text}) => (
 	/>
 );
 
-/*todo: add className dynamically for styling*/
+/*todo: refactor AudioOnly, CardTermOnly & CardTermWithAudio so that they are
+composable as two span elements that can be each contained separately OR together
+within a TermWrapper HOC like so:
+- <TermWarpper name="audio and term">	<CardAudio /> <CardTerm /> </TermWrapper>
+- <TermWarpper name="audio only">	<CardAudio /> </TermWrapper>
+- <TermWarpper name="term only">	<CardTerm /> </TermWrapper>
+... and all the styling necessary can be delegated to the wrapper (not the children)
+*/
+/*high level block component that correlates directly with the audio field */
+/*todo: enable multi-audio preview VERY LOW PRIORITY */
 const AudioOnly = ({name, field, additionalClass}) => (
 	<div className="card-element">
 		{SHOW_ELEMENT_NAME && <ElementLabel text={name} />}
@@ -239,6 +226,7 @@ const AudioOnly = ({name, field, additionalClass}) => (
 	</div>
 );
 
+/*high level block component that combines TERM and AUDIO fields into one block */
 const CardTermWithAudio = ({name, importance, field}) => (
 	<div className="card-element">
 		{SHOW_ELEMENT_NAME && <ElementLabel text={name} />}
@@ -259,6 +247,7 @@ const CardTermWithAudio = ({name, importance, field}) => (
 	</div>
 );
 
+/*high level block component that correlates directly with term field */
 const CardTermOnly = ({name, field, size, importance, hintedOut}) => (
 	<div className="card-element">
 		{SHOW_ELEMENT_NAME && <ElementLabel text={name} />}
