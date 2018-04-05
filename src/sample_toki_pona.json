@@ -1,0 +1,49 @@
+{
+	"tokiPona": [
+		{
+			"term":"ali",
+			"engTrans":"n everything, anything, life, the universe\nmod all, every, complete, whole",
+			"learningOrder":"43",
+			"termAudio":"sound file",
+			"linjaPona":"IM5GYst.png",
+			"image":"",
+			"exampleSentence":"ali li pona.\njan ali li wile tawa.\nma ali li pona.",
+			"exampleImage":"",
+			"exampleSentenceTrans":"Everything is okay.\nEverybody wants to travel.\nAll nations are good.",
+			"exampleSentenceAudio":"three sound files",
+			"mnemonic":"",
+			"blank1":"",
+			"Tags":"Noun adjective base current2017 number"
+		},
+		{
+			"term":"ijo",
+			"engTrans":"n thing, something, stuff, anything, object\nmod of something\nvt objectify",
+			"learningOrder":"16",
+			"termAudio":"sound file",
+			"linjaPona":"mPsLyve.png",
+			"image":"",
+			"exampleSentence":"pipi li moku e ijo.",
+			"exampleImage":"",
+			"exampleSentenceTrans":"The insect is eating something.",
+			"exampleSentenceAudio":"file",
+			"mnemonic":"",
+			"blank1":"",
+			"Tags":"Noun base"
+		},
+		{
+			"term":"ilo",
+			"engTrans":"n tool, device, machine, thing used for a specific purpose",
+			"learningOrder":"15",
+			"termAudio":"sound file",
+			"linjaPona":"jfWa93E.png",
+			"image":"tools.png\ntool-electric-drill.png\n39477-200.png",
+			"exampleSentence":"ona li pona e ilo.",
+			"exampleImage":"fixing.jpg",
+			"exampleSentenceTrans":"She’s fixing the machine.",
+			"exampleSentenceAudio":"file",
+			"mnemonic":"",
+			"blank1":"",
+			"Tags":"Noun base"
+		}
+	]
+}

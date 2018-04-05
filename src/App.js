@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import blackboard1 from './black-1072366.jpg';
 import blackboard2 from './board-2167844.jpg';
+import CARDS from './sample_toki_pona.json';
 
 const THEME_INDEX = 0;
 const CARD_INDEX = 2; //TESTING: change number to see diff card
@@ -28,7 +29,7 @@ const HEAR_PROMPT = HEAR_PROMPTS[PROMPT_INDEX];
 const WRITE_PROMPT = TRANSCRIBE_PROMPTS[PROMPT_INDEX];
 const WRITE_PROMPT2 = WRITE_PROMPTS[PROMPT_INDEX];
 
-//todo: add TAGS component
+
 //todo: add mnemonic device component
 //todo: implement "readLinjaPona (translate L2-to-L1), writeLinjaPona(dictate), hear(listen), look(picture), recall(translate L1-to-L2)" (WIP)
 //todo: implement REACT2HTML markup where the page is exportable to Anki compatible HTML (WIP)
@@ -58,56 +59,6 @@ burn down list:
 
 */
 //"recall","readLinjaPona","hear","",""
-
-const CARDS = {
-	"tokiPona": [
-		{
-			"term":"ali",
-			"engTrans":"n everything, anything, life, the universe\nmod all, every, complete, whole",
-			"learningOrder":"43",
-			"termAudio":"sound file",
-			"linjaPona":"IM5GYst.png",
-			"image":"",
-			"exampleSentence":"ali li pona.\njan ali li wile tawa.\nma ali li pona.",
-			"exampleImage":"",
-			"exampleSentenceTrans":"Everything is okay.\nEverybody wants to travel.\nAll nations are good.",
-			"exampleSentenceAudio":"three sound files",
-			"mnemonic":"",
-			"blank1":"",
-			"Tags":"Noun adjective base current2017 number"
-		},
-		{
-			"term":"ijo",
-			"engTrans":"n thing, something, stuff, anything, object\nmod of something\nvt objectify",
-			"learningOrder":"16",
-			"termAudio":"sound file",
-			"linjaPona":"mPsLyve.png",
-			"image":"",
-			"exampleSentence":"pipi li moku e ijo.",
-			"exampleImage":"",
-			"exampleSentenceTrans":"The insect is eating something.",
-			"exampleSentenceAudio":"file",
-			"mnemonic":"",
-			"blank1":"",
-			"Tags":"Noun base"
-		},
-		{
-			"term":"ilo",
-			"engTrans":"n tool, device, machine, thing used for a specific purpose",
-			"learningOrder":"15",
-			"termAudio":"sound file",
-			"linjaPona":"jfWa93E.png",
-			"image":"tools.png\ntool-electric-drill.png\n39477-200.png",
-			"exampleSentence":"ona li pona e ilo.",
-			"exampleImage":"fixing.jpg",
-			"exampleSentenceTrans":"She’s fixing the machine.",
-			"exampleSentenceAudio":"file",
-			"mnemonic":"",
-			"blank1":"",
-			"Tags":"Noun base"
-		}
-	]
-};
 
 /*low level field component, not to be used directly*/
 const AudioSpan = ({field}) => (
