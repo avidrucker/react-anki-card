@@ -1,0 +1,25 @@
+{
+	"tokiPonaPrompts":
+		{
+			"readLinjaPona":{
+				"L1":"read this out loud:",
+				"L2":"o toki e ni kepeken uta kalama sina:"
+			},
+			"readTranslit":{
+				"L1":"translate this to English",
+				"L2":"o ante e ni tawa toki Inli:"
+			},
+			"hear":{
+				"L1":"translate this into English:",
+				"L2":"o kute. o ante e nimi kute\ntan toki pona tawa toki Inli:"
+			},
+			"transcribe":{
+				"L1":"write what you hear in 'sitelen pona':",
+				"L2":"o sitelen kepeken siteilen pona e ni: toki kute sina."
+			},
+			"write":{
+				"L1":"write this using sitelen pona:",
+				"L2":"o sitelen e ni kepeken sitelen pona:"
+			}
+		}
+}

@@ -30,6 +30,10 @@
 	height: 4em;
 }
 
+.card-image {
+	height: 4em;
+}
+
 .example-image {
 	height: 8em;
 }
@@ -56,22 +60,22 @@
 }
 
 /*uncomment below for wire-frames*/
-/*
+
 .anki-card-audio { border: 1px solid red }
 .card-element { border: 1px solid blue }
 .card-element-line { border: 1px solid purple }
 .anki-card-image { border: 1px solid green }
 .card-element-span { border: 1px solid orange }
-*/
+
 /*WIREFRAMES END*/
 
 /*MARGINS & PADDING BEGIN*/
-/*
+
 .anki-card-audio, .card-element, .card-element-line, .anki-card-image, .card-element-span {
 	padding: 2px;
 	margin: 2px;
 }
-*/
+
 /*MARGINS & PADDING END*/
 
 .element-tag {
