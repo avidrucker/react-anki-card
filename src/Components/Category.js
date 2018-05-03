@@ -6,13 +6,9 @@ import ElementLabel from './ElementLabel';
 this may be substituted with a country flag or other visual indicator such as a logo or Unicode symbol */
 //todo: implement expert mode switch which doesn't even render any components, just text
 class Category extends Component {
-	/*constructor(props) {
-		super(props);
-	}*/
-	
 	render() {
-		const {card, cardLang, cardType, isForExport, labelOn} = this.props;
-		
+		const {cardLang, cardType, isForExport, labelOn} = this.props;
+
 		return (
 			<div className="card-element">
 				{!!labelOn && <ElementLabel text="Language & Card Type" />}

@@ -2,6 +2,7 @@
 	--chalk-yellow: #FFD700;
 	--chalk-lightblue: #96CCFF;
 	--chalk-lightgreen: #9EEBCF;
+	--chalk-salmon: #cc9393;
 }
 
 .primary-color {
@@ -110,3 +111,6 @@
 .tags { color: var(--chalk-lightgreen) }
 .special-field-category { color: var(--chalk-lightgreen) }
 */
+
+/*testing*/
+.field-examples { background-color: var(--chalk-salmon) }

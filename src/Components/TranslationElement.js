@@ -1,6 +1,5 @@
-//todo: replace conditional "export_mode" w/ single switch to single `{{${field}}}` using 'isForExport' DONE
-//todo: add labelOn prop?
-import React, { Component } from 'react';
+import React from 'react';
+
 import CardElement from './CardElement';
 import StaticCardElement from './StaticCardElement';
 

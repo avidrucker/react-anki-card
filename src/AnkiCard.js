@@ -10,6 +10,7 @@ import CardExamples from './Components/CardExamples';
 import Background from './Components/Background';
 import AudioOnly from './Components/AudioOnly';
 import Image from './Components/Image';
+import TagBlock from './Components/TagBlock';
 
 import PROMPTS from './toki_pona_prompts.json';
 
@@ -32,7 +33,6 @@ class AnkiCard extends Component {
 			<div className="anki-card-entire">
 				{/*CARD FRONT*/}
 				<Category
-					card={card}
 					cardLang={cardLang}
 					cardType={cardType}
 					isForExport={isForExport}
@@ -58,7 +58,7 @@ class AnkiCard extends Component {
 				}
 				{
 					cardType === "readLinjaPona" &&
-					<span>
+					<div>
 						<PromptText
 							text={READ_PROMPT}
 							labelOn={labelOn}
@@ -67,14 +67,17 @@ class AnkiCard extends Component {
 							field={card.linjaPona}
 							labelOn={labelOn}
 						/>
-					</span>
+					</div>
 				}
 				{
 					cardType === "readTranslit" &&
 					<div>
-						<PromptText text={READ_PROMPT2} />
+						<PromptText
+							text={READ_PROMPT2}
+							labelOn={labelOn}
+						/>
 						<CardTermOnly
-							name="Term Only"
+							labelName="Term Only"
 							size="big"
 							importance="high"
 							field={card.term}
@@ -83,7 +86,7 @@ class AnkiCard extends Component {
 				}
 				{
 					cardType === "hear" &&
-					<span>
+					<div>
 						<PromptText
 							text={HEAR_PROMPT}
 							labelOn={labelOn}
@@ -93,16 +96,30 @@ class AnkiCard extends Component {
 							isForExport={isForExport}
 							labelOn={labelOn}
 						/>
-					</span>
+					</div>
+				}
+				{
+					cardType === "writeDictation" &&
+					<div>
+						<PromptText
+							text={WRITE_PROMPT}
+							labelOn={labelOn}
+						/>
+						<AudioOnly
+							labelName="Term Audio"
+							isForExport={isForExport}
+							labelOn={labelOn}
+						/>
+					</div>
 				}
 				{/*CARD DIVIDER*/}
 				<hr />
 				{/*CARD BACK*/}
 				{
-					cardType === "recall" &&
+					cardType === "look" &&
 					<div>
 						<CardTermWithAudio
-							name="Term & Audio"
+							labelName="Term & Audio"
 							importance="low"
 							field={card.term}
 							labelOn={labelOn}
@@ -112,17 +129,57 @@ class AnkiCard extends Component {
 							labelOn={labelOn}
 							isForExport={isForExport}
 						/>
+						<TranslationElement
+							field={card.engTrans}
+							isForExport={isForExport}
+							labelOn={labelOn}
+						/>
+					</div>
+				}
+				{
+					cardType === "recall" &&
+					<div>
+						<CardTermWithAudio
+							labelName="Term & Audio"
+							importance="low"
+							field={card.term}
+							labelOn={labelOn}
+						/>
+						<LinjaPona
+							field={card.linjaPona}
+							labelOn={labelOn}
+							isForExport={isForExport}
+						/>
+						<Image
+							labelName="Picture"
+							fieldName="image"
+							resource={card.image}
+							isForExport={isForExport}
+							labelOn={labelOn}
+						/>
 					</div>
 				}
 				{
 					cardType === "readLinjaPona" &&
 					<div>
 						<CardTermWithAudio
-							name="Term & Audio"
+							labelName="Term & Audio"
 							importance="low"
 							field={card.term}
+							labelOn={labelOn}
 						/>
-						<TranslationElement field={card.engTrans} />
+						<Image
+							labelName="Picture"
+							fieldName="image"
+							resource={card.image}
+							isForExport={isForExport}
+							labelOn={labelOn}
+						/>
+						<TranslationElement
+							field={card.engTrans}
+							isForExport={isForExport}
+							labelOn={labelOn}
+						/>
 					</div>
 				}
 				{
@@ -133,8 +190,15 @@ class AnkiCard extends Component {
 							labelOn={labelOn}
 							isForExport={isForExport}
 						/>
+						<Image
+							labelName="Picture"
+							fieldName="image"
+							resource={card.image}
+							isForExport={isForExport}
+							labelOn={labelOn}
+						/>
 						<CardTermOnly
-							name="Term Only"
+							labelName="Term Only"
 							labelOn={labelOn}
 							size="regular"
 							importance="low"
@@ -153,11 +217,34 @@ class AnkiCard extends Component {
 				}
 				{
 					cardType === "readTranslit" &&
-					<LinjaPona
-						field={card.linjaPona}
-						labelOn={labelOn}
-					/>
+					<div>
+						<AudioOnly
+							labelName="Term Audio"
+							isForExport={isForExport}
+							labelOn={labelOn}
+						/>
+						<LinjaPona
+							field={card.linjaPona}
+							labelOn={labelOn}
+							isForExport={isForExport}
+						/>
+						<Image
+							labelName="Picture"
+							fieldName="image"
+							resource={card.image}
+							isForExport={isForExport}
+							labelOn={labelOn}
+						/>
+						<TranslationElement
+							field={card.engTrans}
+							importance="low"
+							labelOn={labelOn}
+							hintedOut={true}
+							isForExport={isForExport}
+						/>
+					</div>
 				}
+				{/*for all cards, the following will render*/}
 				<CardExamples
 					audioField={"exampleSentenceAudio"}
 					exampleField={card.exampleSentence}
@@ -166,7 +253,11 @@ class AnkiCard extends Component {
 					labelOn={labelOn}
 					translationField={card.exampleSentenceTrans}
 				/>
-
+        <TagBlock
+          labelOn={labelOn}
+          field={card.Tags}
+          isForExport={isForExport}
+        />
 				{
 					theme === "blackboard" &&
 					<Background

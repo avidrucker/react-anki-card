@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 /*use this component to mark element blocks (primarily for testing) */
 const ElementLabel = ({text}) => (

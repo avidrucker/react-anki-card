@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+
 import Image from './Image';
 
 /*todo: refactor to handle text first, then iamge as backup*/

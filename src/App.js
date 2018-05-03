@@ -6,7 +6,7 @@ import CARDS from './sample_toki_pona.json';
 import AnkiCard from './AnkiCard';
 
 const CARD_INDEX = 2; //TEST: 0=="ali", 1=="ilo", 2=="ijo"
-const TYPE_INDEX = 0; //TEST: 1=="hear",
+const TYPE_INDEX = 5; //TEST: 0=="look", 1=="hear", 2=="readLinjaPona", 3=="readTranslit", 4=="recall", 5=="writeDictation"
 const PROMPT_INDEX = 0; //0==english, 1==toki pona
 const LABEL_ON = true; //formerly SHOW_ELEMENT_NAME
 const IS_FOR_EXPORT = false; //formerly EXPORT_MODE

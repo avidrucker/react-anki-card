@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CardElementSpan from './CardElementSpan';
 import ElementLabel from './ElementLabel';
 
@@ -10,7 +10,7 @@ const CardTermOnly = ({name, isForExport, field, labelOn, size, importance, hint
 			{
 				!isForExport &&
 				<CardElementSpan
-					name="L2 term"
+					fieldName="L2 term"
 					size={!size ? "big" : size}
 					additionalClass="field-term"
 					importance={!importance ? "high" : importance}

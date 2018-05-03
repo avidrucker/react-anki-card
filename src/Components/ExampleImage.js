@@ -1,12 +1,11 @@
-//todo: add label to ExampleImage
-import React, { Component } from 'react';
+import React from 'react';
 import Image from './Image';
 
 const ExampleImage = ({field, labelOn}) => (
 	<span>
 	{
 		!!field &&
-			<Image
+		<Image
 			additionalClass="example-image"
 			labelOn={labelOn}
 			labelName="Example Image"

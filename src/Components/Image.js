@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import ElementLabel from './ElementLabel';
 
@@ -6,14 +6,15 @@ import ElementLabel from './ElementLabel';
 /*todo: implement SVG linja pona, SVG fontawesome*/
 /*todo: implement IMG block (2-4 images in either 2 pane rectangle, 3 pane triptych, or 4 pane square window format, SVG fontawesome*/
 const Image = ({additionalClass, isForExport, labelOn, labelName, fieldName, resource}) => {
-	
+
+	if(resource === "") {
+		return <span key={labelName}></span>;
+	}
+
 	let images = resource.split("\n").map(image => {
-						console.log(image);
            return <img key={image+400} src={require(`../Images/${image}`)} alt={labelName} className={`${additionalClass} img-responsive`} />
         });
-	
-	console.log(images);
-	
+
 	return (
 		<div className="anki-card-image">
 			{!!labelOn && <ElementLabel text={labelName} />}
@@ -21,7 +22,11 @@ const Image = ({additionalClass, isForExport, labelOn, labelName, fieldName, res
 				{
 					!isForExport &&
 					<span>
-					{ images.map(value => <span>{value}</span>) }
+					{
+						images.map(value =>
+							<span key={value.key}>{value}</span>
+						)
+					}
 					</span>
 				}
 				{

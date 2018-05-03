@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import AudioBlock from './AudioBlock';
 import CardElement from './CardElement';

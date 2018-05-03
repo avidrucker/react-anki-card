@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 //todo: add floating span label element (white text on red text bg)
 /*low level field component, not to be used directly (composition as child only) */

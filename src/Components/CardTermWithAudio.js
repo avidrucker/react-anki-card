@@ -1,17 +1,17 @@
 //todo: replace conditional "export_mode" w/ single switch to single `{{${field}}}` using 'isForExport'
-import React, { Component } from 'react';
+import React from 'react';
 
 import ElementLabel from './ElementLabel';
 import CardElementSpan from './CardElementSpan';
 import AudioSpan from './AudioSpan';
 
 /*high level block component that combines TERM and AUDIO fields into one block */
-const CardTermWithAudio = ({name, importance, field, isForExport, labelOn}) => (
+const CardTermWithAudio = ({labelName, importance, field, isForExport, labelOn}) => (
 	<div className="card-element">
-		{this.props.labelOn && <ElementLabel text={name} />}
+		{labelOn && <ElementLabel text={labelName} />}
 		<div className="card-element-line">
 			{
-				!this.props.isForExport &&
+				!isForExport &&
 				<span>
 					<AudioSpan
 						name="L2 term audio"
@@ -19,7 +19,7 @@ const CardTermWithAudio = ({name, importance, field, isForExport, labelOn}) => (
 						field="▸"
 					/>
 					<CardElementSpan
-						name="L2 term"
+						fieldName="L2 term"
 						size="big"
 						additionalClass="field-term"
 						importance={!importance ? "high" : importance}
@@ -28,7 +28,7 @@ const CardTermWithAudio = ({name, importance, field, isForExport, labelOn}) => (
 				</span>
 			}
 			{
-				!!this.props.isForExport &&
+				!!isForExport &&
 				<span>{`{{termAudio}} {{term}}`}</span>
 			}
 		</div>
