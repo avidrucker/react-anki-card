@@ -3,9 +3,9 @@ import CardElementSpan from './CardElementSpan';
 import ElementLabel from './ElementLabel';
 
 /*high level block component that correlates directly with term field */
-const CardTermOnly = ({name, isForExport, field, labelOn, size, importance, hintedOut}) => (
+const CardTermOnly = ({labelName, isForExport, field, labelOn, size, importance, hintedOut}) => (
 	<div className="card-element">
-		{!!labelOn && <ElementLabel text={name} />}
+		{!!labelOn && <ElementLabel text={labelName} />}
 		<div className="card-element-line">
 			{
 				!isForExport &&

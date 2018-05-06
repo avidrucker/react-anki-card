@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
+
 import './App.css';
 
 import CARDS from './sample_toki_pona.json';
 import AnkiCard from './AnkiCard';
 
 const CARD_INDEX = 2; //TEST: 0=="ali", 1=="ilo", 2=="ijo"
-const TYPE_INDEX = 5; //TEST: 0=="look", 1=="hear", 2=="readLinjaPona", 3=="readTranslit", 4=="recall", 5=="writeDictation"
+const TYPE_INDEX = 6; //TEST: 0=="look", 1=="hear", 2=="readLinjaPona",
+//3=="readTranslit", 4=="recall", 5=="writeDictation", 6=="readSign", 7=="makeSign"
 const PROMPT_INDEX = 0; //0==english, 1==toki pona
 const LABEL_ON = true; //formerly SHOW_ELEMENT_NAME
 const IS_FOR_EXPORT = false; //formerly EXPORT_MODE
 const CARD_TYPES = ["look","hear","readLinjaPona","readTranslit","recall","writeDictation","readSign","makeSign"]
-const CARD_TYPE = CARD_TYPES[TYPE_INDEX]; //todo: implement READ_LP(linjaPona), WRITE_LP, HEAR, LOOK, RECALL, optionally READ_transcription
+const CARD_TYPE = CARD_TYPES[TYPE_INDEX];
 
 const THEME_INDEX = 0;
-const THEMES = ["zen_bw","blackboard"];
+const THEMES = ["zen_bw","black_board","zen_burn","index_card"];
 const THEME = THEMES[THEME_INDEX];
-
-//const IMAGE_PATH = "";
 
 //todo: implement "readLinjaPona (translate L2-to-L1), writeLinjaPona(dictate), hear(listen), look(picture), recall(translate L1-to-L2)" (WIP)
 //todo: implement REACT2HTML markup where the page is exportable to Anki compatible HTML (WIP)

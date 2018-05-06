@@ -11,6 +11,8 @@
 			"exampleImage":"",
 			"exampleSentenceTrans":"Everything is okay.\nEverybody wants to travel.\nAll nations are good.",
 			"exampleSentenceAudio":"three sound files",
+			"signImage":"sign_ali.jpg",
+			"signDescription":"wiggling hands in front of chest, palms forward (both hands)",
 			"mnemonic":"",
 			"blank1":"",
 			"Tags":"Noun adjective base current2017 number"
@@ -26,6 +28,8 @@
 			"exampleImage":"",
 			"exampleSentenceTrans":"The insect is eating something.",
 			"exampleSentenceAudio":"file",
+			"signImage":"sign_ijo.jpg",
+			"signDescription":"thumb hand in front of chest, thumb pointing left",
 			"mnemonic":"",
 			"blank1":"",
 			"Tags":"Noun base"
@@ -41,6 +45,8 @@
 			"exampleImage":"fixing.jpg",
 			"exampleSentenceTrans":"She’s fixing the machine.",
 			"exampleSentenceAudio":"file",
+			"signImage":"sign_ilo.jpg",
+			"signDescription":"thumb hand on top of left fist, palm up & thumb pointing forward",
 			"mnemonic":"",
 			"blank1":"",
 			"Tags":"Noun base"

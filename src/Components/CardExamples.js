@@ -9,7 +9,7 @@ const CardExamples = ({audioField, exampleField, imageField, isForExport, labelO
 	<div className="field-examples">
 		<AudioBlock
 			field={audioField}
-			fieldName={"ExampleSentenceAudio"}
+			fieldName="exampleSentenceAudio"
 			isForExport={isForExport}
 			labelName="Example Audio"
 			labelOn={labelOn}

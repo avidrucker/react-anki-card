@@ -22,6 +22,9 @@ const READ_PROMPT2 = PROMPTS.tokiPonaPrompts.readTranslit.L1;
 const HEAR_PROMPT = PROMPTS.tokiPonaPrompts.hear.L1;
 const WRITE_PROMPT = PROMPTS.tokiPonaPrompts.transcribe.L1;
 const WRITE_PROMPT2 = PROMPTS.tokiPonaPrompts.write.L1;
+const READ_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.readSign.L1;
+const MAKE_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.makeSign.L1;
+const MNEMONIC_PROMPT = PROMPTS.tokiPonaPrompts.mnemonic.L1;
 
 //todo: implement ideal view AND basic view (ideal view has one sound file per sentence on each line, whereas basic view has sound buttons grouped in a row above or below each example block)
 class AnkiCard extends Component {
@@ -66,6 +69,7 @@ class AnkiCard extends Component {
 						<LinjaPona
 							field={card.linjaPona}
 							labelOn={labelOn}
+  						isForExport={isForExport}
 						/>
 					</div>
 				}
@@ -79,7 +83,9 @@ class AnkiCard extends Component {
 						<CardTermOnly
 							labelName="Term Only"
 							size="big"
+              labelOn={labelOn}
 							importance="high"
+              isForExport={isForExport}
 							field={card.term}
 						/>
 					</div>
@@ -112,6 +118,36 @@ class AnkiCard extends Component {
 						/>
 					</div>
 				}
+        {
+					cardType === "readSign" &&
+					<div>
+						<PromptText
+							text={READ_SIGN_PROMPT}
+							labelOn={labelOn}
+						/>
+            <Image
+  						labelName="Sign"
+  						fieldName="signImage"
+  						resource={card.signImage}
+  						isForExport={isForExport}
+  						labelOn={labelOn}
+  					/>
+					</div>
+				}
+        {
+          cardType === "makeSign" &&
+          <div>
+          <PromptText
+            text={MAKE_SIGN_PROMPT}
+            labelOn={labelOn}
+          />
+            <LinjaPona
+              field={card.linjaPona}
+              labelOn={labelOn}
+              isForExport={isForExport}
+            />
+          </div>
+        }
 				{/*CARD DIVIDER*/}
 				<hr />
 				{/*CARD BACK*/}
@@ -122,7 +158,8 @@ class AnkiCard extends Component {
 							labelName="Term & Audio"
 							importance="low"
 							field={card.term}
-							labelOn={labelOn}
+              labelOn={labelOn}
+							isForExport={isForExport}
 						/>
 						<LinjaPona
 							field={card.linjaPona}
@@ -144,6 +181,7 @@ class AnkiCard extends Component {
 							importance="low"
 							field={card.term}
 							labelOn={labelOn}
+							isForExport={isForExport}
 						/>
 						<LinjaPona
 							field={card.linjaPona}
@@ -167,6 +205,7 @@ class AnkiCard extends Component {
 							importance="low"
 							field={card.term}
 							labelOn={labelOn}
+  						isForExport={isForExport}
 						/>
 						<Image
 							labelName="Picture"
@@ -183,7 +222,7 @@ class AnkiCard extends Component {
 					</div>
 				}
 				{
-					cardType === "hear" &&
+					(cardType === "hear" || cardType === "writeDictation") &&
 					<div>
 						<LinjaPona
 							field={card.linjaPona}
@@ -244,6 +283,63 @@ class AnkiCard extends Component {
 						/>
 					</div>
 				}
+        {
+					cardType === "readSign" &&
+					<div>
+            <CardTermWithAudio
+              labelName="Term & Audio"
+              importance="low"
+              field={card.term}
+              labelOn={labelOn}
+              isForExport={isForExport}
+            />
+						<LinjaPona
+							field={card.linjaPona}
+							labelOn={labelOn}
+							isForExport={isForExport}
+						/>
+						<Image
+							labelName="Picture"
+							fieldName="image"
+							resource={card.image}
+							isForExport={isForExport}
+							labelOn={labelOn}
+						/>
+						<TranslationElement
+							field={card.engTrans}
+							importance="low"
+							labelOn={labelOn}
+							hintedOut={true}
+							isForExport={isForExport}
+						/>
+					</div>
+				}
+        {
+					cardType === "makeSign" &&
+					<div>
+            <CardTermWithAudio
+              labelName="Term & Audio"
+              importance="low"
+              field={card.term}
+              labelOn={labelOn}
+              isForExport={isForExport}
+            />
+						<Image
+							labelName="Picture"
+							fieldName="image"
+							resource={card.image}
+							isForExport={isForExport}
+							labelOn={labelOn}
+						/>
+						<TranslationElement
+							field={card.engTrans}
+							importance="low"
+							labelOn={labelOn}
+							hintedOut={true}
+							isForExport={isForExport}
+						/>
+					</div>
+				}
 				{/*for all cards, the following will render*/}
 				<CardExamples
 					audioField={"exampleSentenceAudio"}
@@ -259,9 +355,9 @@ class AnkiCard extends Component {
           isForExport={isForExport}
         />
 				{
-					theme === "blackboard" &&
+					theme === "black_board" &&
 					<Background
-						name="blackboard"
+						name={theme}
 						resource={blackboard1}
 					/>
 				}

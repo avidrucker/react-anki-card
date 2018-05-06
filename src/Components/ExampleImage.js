@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from './Image';
 
-const ExampleImage = ({field, labelOn}) => (
+//todo: check to see if this need 'isForExport'
+const ExampleImage = ({field, labelOn, isForExport}) => (
 	<span>
 	{
 		!!field &&
@@ -10,6 +11,8 @@ const ExampleImage = ({field, labelOn}) => (
 			labelOn={labelOn}
 			labelName="Example Image"
 			resource={field}
+			isForExport={isForExport}
+			fieldName="exampleImage"
 		/>
 	}
 	{
