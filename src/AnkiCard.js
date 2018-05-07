@@ -10,7 +10,9 @@ import CardExamples from './Components/CardExamples';
 import Background from './Components/Background';
 import AudioOnly from './Components/AudioOnly';
 import Image from './Components/Image';
+import AccessibleImageGroup from './Components/AccessibleImageGroup';
 import TagBlock from './Components/TagBlock';
+//import withCaption from './Components/withCaption';
 
 import PROMPTS from './toki_pona_prompts.json';
 
@@ -44,7 +46,8 @@ class AnkiCard extends Component {
 				{
 					cardType === "look" &&
 					<Image
-						labelName="Picture"
+            additionalClass="card-image"
+            labelName="Picture"
 						fieldName="image"
 						resource={card.image}
 						isForExport={isForExport}
@@ -125,13 +128,16 @@ class AnkiCard extends Component {
 							text={READ_SIGN_PROMPT}
 							labelOn={labelOn}
 						/>
-            <Image
-  						labelName="Sign"
-  						fieldName="signImage"
-  						resource={card.signImage}
-  						isForExport={isForExport}
-  						labelOn={labelOn}
-  					/>
+            <AccessibleImageGroup
+              imageAddClass="sign-language-image"
+              imageLabelName="Sign"
+              imageFieldName="signImage"
+              imageField={card.signImage}
+              isForExport={isForExport}
+              labelOn={labelOn}
+              captionText={card.signDescription}
+              textFieldName="signDescription"
+            />
 					</div>
 				}
         {
@@ -189,7 +195,8 @@ class AnkiCard extends Component {
 							isForExport={isForExport}
 						/>
 						<Image
-							labelName="Picture"
+              additionalClass="card-image"
+              labelName="Picture"
 							fieldName="image"
 							resource={card.image}
 							isForExport={isForExport}
@@ -208,7 +215,8 @@ class AnkiCard extends Component {
   						isForExport={isForExport}
 						/>
 						<Image
-							labelName="Picture"
+              additionalClass="card-image"
+              labelName="Picture"
 							fieldName="image"
 							resource={card.image}
 							isForExport={isForExport}
@@ -230,7 +238,8 @@ class AnkiCard extends Component {
 							isForExport={isForExport}
 						/>
 						<Image
-							labelName="Picture"
+              additionalClass="card-image"
+              labelName="Picture"
 							fieldName="image"
 							resource={card.image}
 							isForExport={isForExport}
@@ -268,7 +277,8 @@ class AnkiCard extends Component {
 							isForExport={isForExport}
 						/>
 						<Image
-							labelName="Picture"
+              additionalClass="card-image"
+              labelName="Picture"
 							fieldName="image"
 							resource={card.image}
 							isForExport={isForExport}
@@ -299,6 +309,7 @@ class AnkiCard extends Component {
 							isForExport={isForExport}
 						/>
 						<Image
+              additionalClass="card-image"
 							labelName="Picture"
 							fieldName="image"
 							resource={card.image}
@@ -317,6 +328,16 @@ class AnkiCard extends Component {
         {
 					cardType === "makeSign" &&
 					<div>
+            <AccessibleImageGroup
+              imageAddClass="sign-language-image"
+              imageLabelName="Sign"
+              imageFieldName="signImage"
+              imageField={card.signImage}
+              isForExport={isForExport}
+              labelOn={labelOn}
+              captionText={card.signDescription}
+              textFieldName="signDescription"
+            />
             <CardTermWithAudio
               labelName="Term & Audio"
               importance="low"
@@ -325,7 +346,8 @@ class AnkiCard extends Component {
               isForExport={isForExport}
             />
 						<Image
-							labelName="Picture"
+              additionalClass="card-image"
+              labelName="Picture"
 							fieldName="image"
 							resource={card.image}
 							isForExport={isForExport}

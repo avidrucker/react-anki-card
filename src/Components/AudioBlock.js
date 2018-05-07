@@ -10,7 +10,10 @@ const AudioBlock = ({additionalClass, isForExport, field, labelOn, labelName, fi
 		<div className={`card-element-line anki-card-audio ${additionalClass}`}>
 			{!isForExport && field.split("\n").map(i => {
 				return (
-				<AudioSpan key={i} field="▸" />
+				<AudioSpan
+					key={i}
+					field="▸"
+				/>
 				);
 			})}
 			{

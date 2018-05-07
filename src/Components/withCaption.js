@@ -1,22 +1,19 @@
 /*todo: implement HOC where Image component can be wrapped and
 accessibility text added to it as "AccessibleImage" component*/
+/*
 import React, { Component } from 'react';
+import Image from './Image';
 
-//const withCaption = BaseComponent => ({captionText}) => {
-function withCaption({BaseComponent, captionText}) {
-  //return (
-  return class ImageWithText extends React.Component {
-    render() {
+const withCaption = ({Image, captionText}) => class extends React.Component {
+  render() {
+    return(
       <div className="wrapper">
-        <BaseComponent {...this.props} />
+        <Image {...this.props} />
         <p>{captionText}</p>
       </div>
-    }
+    )
   }
 }
 
-export default withCaption;
-
-//export default const AccesibleImage withCaption(Image);
-//const AccesibleImage withCaption(Image);
-//export default AccesibleImage(Image);
+export default withCaption();
+*/
