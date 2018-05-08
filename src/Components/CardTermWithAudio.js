@@ -1,5 +1,5 @@
 //todo: replace conditional "export_mode" w/ single switch to single `{{${field}}}` using 'isForExport'
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import ElementLabel from './ElementLabel';
 import CardElementSpan from './CardElementSpan';
@@ -12,7 +12,7 @@ const CardTermWithAudio = ({labelName, importance, field, isForExport, labelOn})
 		<div className="card-element-line">
 			{
 				!isForExport &&
-				<span>
+				<Fragment>
 					<AudioSpan
 						name="L2 term audio"
 						additionalClass="field-term"
@@ -25,11 +25,11 @@ const CardTermWithAudio = ({labelName, importance, field, isForExport, labelOn})
 						importance={!importance ? "high" : importance}
 						field={field}
 					/>
-				</span>
+				</Fragment>
 			}
 			{
 				!!isForExport &&
-				<span>{`{{termAudio}} {{term}}`}</span>
+				<Fragment>{`{{termAudio}} {{term}}`}</Fragment>
 			}
 		</div>
 	</div>

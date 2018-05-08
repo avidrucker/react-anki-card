@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import AudioSpan from './AudioSpan';
 import ElementLabel from './ElementLabel';
@@ -18,7 +18,7 @@ const AudioOnly = ({additionalClass, isForExport, labelOn, labelName}) => (
 			}
 			{
 				!!isForExport &&
-				<span>{`{{termAudio}}`}</span>
+				<Fragment>{`{{termAudio}}`}</Fragment>
 			}
 		</div>
 	</div>

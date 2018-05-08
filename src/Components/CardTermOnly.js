@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import CardElementSpan from './CardElementSpan';
 import ElementLabel from './ElementLabel';
 
@@ -20,7 +20,7 @@ const CardTermOnly = ({labelName, isForExport, field, labelOn, size, importance,
 			}
 			{
 				!!isForExport &&
-				<span>{`{{term}}`}</span>
+				<Fragment>{`{{term}}`}</Fragment>
 			}
 		</div>
 	</div>

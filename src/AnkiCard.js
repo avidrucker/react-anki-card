@@ -64,7 +64,7 @@ class AnkiCard extends Component {
 				}
 				{
 					cardType === "readLinjaPona" &&
-					<div>
+					<Fragment>
 						<PromptText
 							text={READ_PROMPT}
 							labelOn={labelOn}
@@ -74,28 +74,28 @@ class AnkiCard extends Component {
 							labelOn={labelOn}
   						isForExport={isForExport}
 						/>
-					</div>
+					</Fragment>
 				}
 				{
 					cardType === "readTranslit" &&
-					<div>
+					<Fragment>
 						<PromptText
 							text={READ_PROMPT2}
 							labelOn={labelOn}
 						/>
 						<CardTermOnly
 							labelName="Term Only"
-							size="big"
-              labelOn={labelOn}
-							importance="high"
-              isForExport={isForExport}
 							field={card.term}
+              size="big"
+							importance="high"
+              labelOn={labelOn}
+              isForExport={isForExport}
 						/>
-					</div>
+					</Fragment>
 				}
 				{
 					cardType === "hear" &&
-					<div>
+					<Fragment>
 						<PromptText
 							text={HEAR_PROMPT}
 							labelOn={labelOn}
@@ -105,11 +105,11 @@ class AnkiCard extends Component {
 							isForExport={isForExport}
 							labelOn={labelOn}
 						/>
-					</div>
+					</Fragment>
 				}
 				{
 					cardType === "writeDictation" &&
-					<div>
+					<Fragment>
 						<PromptText
 							text={WRITE_PROMPT}
 							labelOn={labelOn}
@@ -119,11 +119,11 @@ class AnkiCard extends Component {
 							isForExport={isForExport}
 							labelOn={labelOn}
 						/>
-					</div>
+					</Fragment>
 				}
         {
 					cardType === "readSign" &&
-					<div>
+					<Fragment>
 						<PromptText
 							text={READ_SIGN_PROMPT}
 							labelOn={labelOn}
@@ -133,33 +133,33 @@ class AnkiCard extends Component {
               imageLabelName="Sign"
               imageFieldName="signImage"
               imageField={card.signImage}
-              isForExport={isForExport}
-              labelOn={labelOn}
               captionText={card.signDescription}
               textFieldName="signDescription"
+              isForExport={isForExport}
+              labelOn={labelOn}
             />
-					</div>
+					</Fragment>
 				}
         {
           cardType === "makeSign" &&
-          <div>
-          <PromptText
-            text={MAKE_SIGN_PROMPT}
-            labelOn={labelOn}
-          />
+          <Fragment>
+            <PromptText
+              text={MAKE_SIGN_PROMPT}
+              labelOn={labelOn}
+            />
             <LinjaPona
               field={card.linjaPona}
               labelOn={labelOn}
               isForExport={isForExport}
             />
-          </div>
+          </Fragment>
         }
 				{/*CARD DIVIDER*/}
 				<hr />
 				{/*CARD BACK*/}
 				{
 					cardType === "look" &&
-					<div>
+					<Fragment>
 						<CardTermWithAudio
 							labelName="Term & Audio"
 							importance="low"
@@ -177,11 +177,11 @@ class AnkiCard extends Component {
 							isForExport={isForExport}
 							labelOn={labelOn}
 						/>
-					</div>
+					</Fragment>
 				}
 				{
 					cardType === "recall" &&
-					<div>
+					<Fragment>
 						<CardTermWithAudio
 							labelName="Term & Audio"
 							importance="low"
@@ -202,11 +202,11 @@ class AnkiCard extends Component {
 							isForExport={isForExport}
 							labelOn={labelOn}
 						/>
-					</div>
+					</Fragment>
 				}
 				{
 					cardType === "readLinjaPona" &&
-					<div>
+					<Fragment>
 						<CardTermWithAudio
 							labelName="Term & Audio"
 							importance="low"
@@ -227,11 +227,11 @@ class AnkiCard extends Component {
 							isForExport={isForExport}
 							labelOn={labelOn}
 						/>
-					</div>
+					</Fragment>
 				}
 				{
 					(cardType === "hear" || cardType === "writeDictation") &&
-					<div>
+					<Fragment>
 						<LinjaPona
 							field={card.linjaPona}
 							labelOn={labelOn}
@@ -257,15 +257,15 @@ class AnkiCard extends Component {
 						<TranslationElement
 							field={card.engTrans}
 							importance="low"
-							labelOn={labelOn}
 							hintedOut={true}
+              labelOn={labelOn}
 							isForExport={isForExport}
 						/>
-					</div>
+					</Fragment>
 				}
 				{
 					cardType === "readTranslit" &&
-					<div>
+					<Fragment>
 						<AudioOnly
 							labelName="Term Audio"
 							isForExport={isForExport}
@@ -287,15 +287,15 @@ class AnkiCard extends Component {
 						<TranslationElement
 							field={card.engTrans}
 							importance="low"
-							labelOn={labelOn}
 							hintedOut={true}
+              labelOn={labelOn}
 							isForExport={isForExport}
 						/>
-					</div>
+					</Fragment>
 				}
         {
 					cardType === "readSign" &&
-					<div>
+					<Fragment>
             <CardTermWithAudio
               labelName="Term & Audio"
               importance="low"
@@ -319,24 +319,24 @@ class AnkiCard extends Component {
 						<TranslationElement
 							field={card.engTrans}
 							importance="low"
-							labelOn={labelOn}
 							hintedOut={true}
+              labelOn={labelOn}
 							isForExport={isForExport}
 						/>
-					</div>
+					</Fragment>
 				}
         {
 					cardType === "makeSign" &&
-					<div>
+					<Fragment>
             <AccessibleImageGroup
               imageAddClass="sign-language-image"
               imageLabelName="Sign"
               imageFieldName="signImage"
               imageField={card.signImage}
-              isForExport={isForExport}
-              labelOn={labelOn}
               captionText={card.signDescription}
               textFieldName="signDescription"
+              isForExport={isForExport}
+              labelOn={labelOn}
             />
             <CardTermWithAudio
               labelName="Term & Audio"
@@ -356,11 +356,11 @@ class AnkiCard extends Component {
 						<TranslationElement
 							field={card.engTrans}
 							importance="low"
+              hintedOut={true}
 							labelOn={labelOn}
-							hintedOut={true}
 							isForExport={isForExport}
 						/>
-					</div>
+					</Fragment>
 				}
 				{/*for all cards, the following will render*/}
         <Fragment>
