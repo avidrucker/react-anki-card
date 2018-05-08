@@ -7,7 +7,7 @@ const AccessibilityText = ({labelName, labelOn, field, fieldName, isForExport}) 
 	<CardElement
 		labelName={labelName + " Accessibility Text"}
 		labelOn={labelOn}
-		size="regular"
+		size="small"
 		additionalClass="text-accessibility"
 		importance="low"
 		field={field}

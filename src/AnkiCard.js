@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Category from './Components/Category';
 import TranslationElement from './Components/TranslationElement';
@@ -12,7 +12,7 @@ import AudioOnly from './Components/AudioOnly';
 import Image from './Components/Image';
 import AccessibleImageGroup from './Components/AccessibleImageGroup';
 import TagBlock from './Components/TagBlock';
-//import withCaption from './Components/withCaption';
+import MnemonicBlock from './Components/MnemonicBlock';
 
 import PROMPTS from './toki_pona_prompts.json';
 
@@ -363,27 +363,33 @@ class AnkiCard extends Component {
 					</div>
 				}
 				{/*for all cards, the following will render*/}
-				<CardExamples
-					audioField={"exampleSentenceAudio"}
-					exampleField={card.exampleSentence}
-					imageField={card.exampleImage}
-					isForExport={isForExport}
-					labelOn={labelOn}
-					translationField={card.exampleSentenceTrans}
-				/>
-        <TagBlock
-          labelOn={labelOn}
-          field={card.Tags}
-          isForExport={isForExport}
-        />
-				{
-					theme === "black_board" &&
-					<Background
-						name={theme}
-						resource={blackboard1}
-					/>
-				}
-
+        <Fragment>
+  				<CardExamples
+  					audioField={"exampleSentenceAudio"}
+  					exampleField={card.exampleSentence}
+  					imageField={card.exampleImage}
+  					translationField={card.exampleSentenceTrans}
+            labelOn={labelOn}
+            isForExport={isForExport}
+  				/>
+          <MnemonicBlock
+            field={card.mnemonic}
+            labelOn={labelOn}
+            isForExport={isForExport}
+          />
+          <TagBlock
+            field={card.Tags}
+            labelOn={labelOn}
+            isForExport={isForExport}
+          />
+  				{
+  					theme === "black_board" &&
+  					<Background
+  						name={theme}
+  						resource={blackboard1}
+  					/>
+  				}
+        </Fragment>
       </div>
     );
   }

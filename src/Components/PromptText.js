@@ -7,7 +7,7 @@ const PromptText = ({labelOn, text}) => (
 	<StaticCardElement
 		labelName="Card Prompt"
 		labelOn={labelOn}
-		size="regular"
+		size="small"
 		additionalClass="text-prompt"
 		importance="low"
 		text={text}

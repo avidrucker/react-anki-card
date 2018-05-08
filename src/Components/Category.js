@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CardElementSpan from './CardElementSpan';
 import ElementLabel from './ElementLabel';
-//import {withTheme} from '../theme-context';
 
 /*generally appears at the top/bottom of each card to make it clear which deck the learner is currently using.
 this may be substituted with a country flag or other visual indicator such as a logo or Unicode symbol */
