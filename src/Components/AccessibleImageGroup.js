@@ -1,35 +1,26 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 import Image from './Image';
 import AccessibilityText from './AccessibilityText';
+import {withLabel} from './label-context';
+import {forExport} from './export-context';
+const ExpLabeledImage = forExport(withLabel(Image));
+const ExpLabeledAccessibilityText = forExport(withLabel(AccessibilityText));
 
-/*const AccessibleImage = ({image, text}) => {
-  <div className="wrapper">
-    <image />
-    <p>Hi!</p>
-  </div>
-};*/
-
-const AccessibleImageGroup = ({imageAddClass,
-    isForExport, labelOn, imageField, imageLabelName,
-    imageFieldName, textFieldName, textAddClass,
-    captionText}) => {
+const AccessibleImageGroup = ({imageAddClass, imageField, imageLabelName,
+    imageFieldName, textFieldName, textAddClass, captionText}) => {
   return (
     <Fragment>
-      <Image
+      <ExpLabeledImage
         additionalClass={imageAddClass}
         labelName={imageLabelName}
         fieldName={imageFieldName}
         resource={imageField}
-        isForExport={isForExport}
-        labelOn={labelOn}
       />
-      <AccessibilityText
+      <ExpLabeledAccessibilityText
         labelName={imageLabelName}
-        labelOn={labelOn}
         field={captionText}
         fieldName={textFieldName}
-        isForExport={isForExport}
       />
     </Fragment>
   )

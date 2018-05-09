@@ -3,7 +3,9 @@ import React from 'react';
 import ElementLabel from './ElementLabel';
 
 /*general dynamic block elements (composition as child only)*/
-const CardElement = ({additionalClass, field, fieldName, importance, hintedOut, labelOn, labelName, size, isForExport}) => (
+const CardElement = ({additionalClass, field,
+	fieldName, importance, labelOn,
+	hintedOut, isForExport, labelName, size}) => (
 	<div className="card-element">
 		{!!labelOn && <ElementLabel text={labelName} />}
 		{

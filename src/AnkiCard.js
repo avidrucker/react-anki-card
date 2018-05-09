@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 
+import {withLabel} from './Components/label-context';
+import {forExport} from './Components/export-context';
 
-import {LabelContext,LabelProvider, withLabel} from './Components/label-context';
 import Category from './Components/Category';
 import TranslationElement from './Components/TranslationElement';
 import CardTermWithAudio from './Components/CardTermWithAudio';
@@ -17,7 +18,6 @@ import TagBlock from './Components/TagBlock';
 import MnemonicBlock from './Components/MnemonicBlock';
 
 import PROMPTS from './toki_pona_prompts.json';
-
 import blackboard1 from './black-1072366.jpg';
 import blackboard2 from './board-2167844.jpg';
 
@@ -30,150 +30,129 @@ const READ_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.readSign.L1;
 const MAKE_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.makeSign.L1;
 const MNEMONIC_PROMPT = PROMPTS.tokiPonaPrompts.mnemonic.L1;
 
+// const ThemeContext = React.createContext('light');
+//
+// // This function takes a component...
+// export function withTheme(Component) {
+//   // ...and returns another component...
+//   return function ThemedComponent(props) {
+//     // ... and renders the wrapped component with the context theme!
+//     // Notice that we pass through any additional props as well
+//     return (
+//       <ThemeContext.Consumer>
+//         {theme => <Component {...props} theme={theme} />}
+//       </ThemeContext.Consumer>
+//     );
+//   };
+// }
 
-
-const ThemeContext = React.createContext('light');
-
-// This function takes a component...
-export function withTheme(Component) {
-  // ...and returns another component...
-  return function ThemedComponent(props) {
-    // ... and renders the wrapped component with the context theme!
-    // Notice that we pass through any additional props as well
-    return (
-      <ThemeContext.Consumer>
-        {theme => <Component {...props} theme={theme} />}
-      </ThemeContext.Consumer>
-    );
-  };
-}
-
-
-const LabeledCategory = withLabel(Category);
-
+const ExpLabeledCategory = forExport(withLabel(Category));
+const ExpLabeledImage = forExport(withLabel(Image));
+const LabeledPromptText = withLabel(PromptText);
+const ExpLabeledAudioOnly = forExport(withLabel(AudioOnly));
+const ExpLabeledCardTermOnly = forExport(withLabel(CardTermOnly));
+const ExpLabeledCardTermWithAudio = forExport(withLabel(CardTermWithAudio));
+const ExpLabeledTranslationElement = forExport(withLabel(TranslationElement));
+const ExpLabeledAccessibleImageGroup = forExport(withLabel(AccessibleImageGroup));
 
 //todo: implement ideal view AND basic view (ideal view has one sound file per sentence on each line, whereas basic view has sound buttons grouped in a row above or below each example block)
 class AnkiCard extends Component {
   render() {
-		{/*todo: destructure/spread props from this.props */}
-		const {card, cardLang, cardType, isForExport, labelOn, theme} = this.props;
+		const {card, cardLang, cardType, theme} = this.props;
 
     return (
 			<div className="anki-card-entire">
 				{/*CARD FRONT*/}
-				<LabeledCategory
+				<ExpLabeledCategory
 					cardLang={cardLang}
 					cardType={cardType}
-					isForExport={isForExport}
 				/>
 				{
 					cardType === "look" &&
-					<Image
+					<ExpLabeledImage
             additionalClass="card-image"
             labelName="Picture"
 						fieldName="image"
 						resource={card.image}
-						isForExport={isForExport}
-						labelOn={labelOn}
 					/>
 				}
 				{
 					cardType === "recall" &&
-					<TranslationElement
-						field={card.engTrans}
-						isForExport={isForExport}
-						labelOn={labelOn}
-					/>
+          <ExpLabeledTranslationElement
+            field={card.engTrans}
+          />
 				}
 				{
 					cardType === "readLinjaPona" &&
 					<Fragment>
-						<PromptText
+						<LabeledPromptText
 							text={READ_PROMPT}
-							labelOn={labelOn}
 						/>
 						<LinjaPona
 							field={card.linjaPona}
-							labelOn={labelOn}
-  						isForExport={isForExport}
 						/>
 					</Fragment>
 				}
 				{
 					cardType === "readTranslit" &&
 					<Fragment>
-						<PromptText
+						<LabeledPromptText
 							text={READ_PROMPT2}
-							labelOn={labelOn}
 						/>
-						<CardTermOnly
+						<ExpLabeledCardTermOnly
 							labelName="Term Only"
 							field={card.term}
               size="big"
 							importance="high"
-              labelOn={labelOn}
-              isForExport={isForExport}
 						/>
 					</Fragment>
 				}
 				{
 					cardType === "hear" &&
 					<Fragment>
-						<PromptText
+						<LabeledPromptText
 							text={HEAR_PROMPT}
-							labelOn={labelOn}
 						/>
-						<AudioOnly
+						<ExpLabeledAudioOnly
 							labelName="Term Audio"
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
 					</Fragment>
 				}
 				{
 					cardType === "writeDictation" &&
 					<Fragment>
-						<PromptText
+						<LabeledPromptText
 							text={WRITE_PROMPT}
-							labelOn={labelOn}
 						/>
-						<AudioOnly
+						<ExpLabeledAudioOnly
 							labelName="Term Audio"
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
 					</Fragment>
 				}
         {
 					cardType === "readSign" &&
 					<Fragment>
-						<PromptText
+						<LabeledPromptText
 							text={READ_SIGN_PROMPT}
-							labelOn={labelOn}
 						/>
-            <AccessibleImageGroup
+            <ExpLabeledAccessibleImageGroup
               imageAddClass="sign-language-image"
               imageLabelName="Sign"
               imageFieldName="signImage"
               imageField={card.signImage}
               captionText={card.signDescription}
               textFieldName="signDescription"
-              isForExport={isForExport}
-              labelOn={labelOn}
             />
 					</Fragment>
 				}
         {
           cardType === "makeSign" &&
           <Fragment>
-            <PromptText
+            <LabeledPromptText
               text={MAKE_SIGN_PROMPT}
-              labelOn={labelOn}
             />
             <LinjaPona
               field={card.linjaPona}
-              labelOn={labelOn}
-              isForExport={isForExport}
             />
           </Fragment>
         }
@@ -183,72 +162,54 @@ class AnkiCard extends Component {
 				{
 					cardType === "look" &&
 					<Fragment>
-						<CardTermWithAudio
+						<ExpLabeledCardTermWithAudio
 							labelName="Term & Audio"
 							importance="low"
 							field={card.term}
-              labelOn={labelOn}
-							isForExport={isForExport}
 						/>
 						<LinjaPona
 							field={card.linjaPona}
-							labelOn={labelOn}
-							isForExport={isForExport}
 						/>
-						<TranslationElement
+						<ExpLabeledTranslationElement
 							field={card.engTrans}
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
 					</Fragment>
 				}
 				{
 					cardType === "recall" &&
 					<Fragment>
-						<CardTermWithAudio
+						<ExpLabeledCardTermWithAudio
 							labelName="Term & Audio"
 							importance="low"
 							field={card.term}
-							labelOn={labelOn}
-							isForExport={isForExport}
 						/>
 						<LinjaPona
 							field={card.linjaPona}
-							labelOn={labelOn}
-							isForExport={isForExport}
 						/>
-						<Image
+						<ExpLabeledImage
               additionalClass="card-image"
               labelName="Picture"
 							fieldName="image"
 							resource={card.image}
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
 					</Fragment>
 				}
 				{
 					cardType === "readLinjaPona" &&
 					<Fragment>
-						<CardTermWithAudio
+						<ExpLabeledCardTermWithAudio
 							labelName="Term & Audio"
 							importance="low"
 							field={card.term}
-							labelOn={labelOn}
-  						isForExport={isForExport}
 						/>
-						<Image
+						<ExpLabeledImage
               additionalClass="card-image"
               labelName="Picture"
 							fieldName="image"
 							resource={card.image}
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
-						<TranslationElement
+						<ExpLabeledTranslationElement
 							field={card.engTrans}
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
 					</Fragment>
 				}
@@ -257,156 +218,118 @@ class AnkiCard extends Component {
 					<Fragment>
 						<LinjaPona
 							field={card.linjaPona}
-							labelOn={labelOn}
-							isForExport={isForExport}
 						/>
-						<Image
+						<ExpLabeledImage
               additionalClass="card-image"
               labelName="Picture"
 							fieldName="image"
 							resource={card.image}
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
-						<CardTermOnly
+						<ExpLabeledCardTermOnly
 							labelName="Term Only"
-							labelOn={labelOn}
 							size="regular"
 							importance="low"
-							isForExport={isForExport}
 							field={card.term}
 							hintedOut={false /*change this back to true*/}
 						/>
-						<TranslationElement
+						<ExpLabeledTranslationElement
 							field={card.engTrans}
 							importance="low"
 							hintedOut={true}
-              labelOn={labelOn}
-							isForExport={isForExport}
 						/>
 					</Fragment>
 				}
 				{
 					cardType === "readTranslit" &&
 					<Fragment>
-						<AudioOnly
+						<ExpLabeledAudioOnly
 							labelName="Term Audio"
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
 						<LinjaPona
 							field={card.linjaPona}
-							labelOn={labelOn}
-							isForExport={isForExport}
 						/>
-						<Image
+						<ExpLabeledImage
               additionalClass="card-image"
               labelName="Picture"
 							fieldName="image"
 							resource={card.image}
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
-						<TranslationElement
+						<ExpLabeledTranslationElement
 							field={card.engTrans}
 							importance="low"
 							hintedOut={true}
-              labelOn={labelOn}
-							isForExport={isForExport}
 						/>
 					</Fragment>
 				}
         {
 					cardType === "readSign" &&
 					<Fragment>
-            <CardTermWithAudio
+            <ExpLabeledCardTermWithAudio
               labelName="Term & Audio"
               importance="low"
               field={card.term}
-              labelOn={labelOn}
-              isForExport={isForExport}
             />
 						<LinjaPona
 							field={card.linjaPona}
-							labelOn={labelOn}
-							isForExport={isForExport}
 						/>
-						<Image
+						<ExpLabeledImage
               additionalClass="card-image"
 							labelName="Picture"
 							fieldName="image"
 							resource={card.image}
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
-						<TranslationElement
+						<ExpLabeledTranslationElement
 							field={card.engTrans}
 							importance="low"
 							hintedOut={true}
-              labelOn={labelOn}
-							isForExport={isForExport}
 						/>
 					</Fragment>
 				}
         {
 					cardType === "makeSign" &&
 					<Fragment>
-            <AccessibleImageGroup
+            <ExpLabeledAccessibleImageGroup
               imageAddClass="sign-language-image"
               imageLabelName="Sign"
               imageFieldName="signImage"
               imageField={card.signImage}
               captionText={card.signDescription}
               textFieldName="signDescription"
-              isForExport={isForExport}
-              labelOn={labelOn}
             />
-            <CardTermWithAudio
+            <ExpLabeledCardTermWithAudio
               labelName="Term & Audio"
               importance="low"
               field={card.term}
-              labelOn={labelOn}
-              isForExport={isForExport}
             />
-						<Image
+						<ExpLabeledImage
               additionalClass="card-image"
               labelName="Picture"
 							fieldName="image"
 							resource={card.image}
-							isForExport={isForExport}
-							labelOn={labelOn}
 						/>
-						<TranslationElement
+						<ExpLabeledTranslationElement
 							field={card.engTrans}
 							importance="low"
               hintedOut={true}
-							labelOn={labelOn}
-							isForExport={isForExport}
 						/>
 					</Fragment>
 				}
 				{/*for all cards, the following will render*/}
-				
+
         <Fragment>
   				<CardExamples
   					audioField={"exampleSentenceAudio"}
   					exampleField={card.exampleSentence}
   					imageField={card.exampleImage}
   					translationField={card.exampleSentenceTrans}
-            labelOn={labelOn}
-            isForExport={isForExport}
   				/>
           <MnemonicBlock
             field={card.mnemonic}
-            labelOn={labelOn}
-            isForExport={isForExport}
           />
           <TagBlock
             field={card.Tags}
-            labelOn={labelOn}
-            isForExport={isForExport}
           />
-  				
+
         </Fragment>
       </div>
     );
