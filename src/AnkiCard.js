@@ -3,19 +3,19 @@ import React, { Component, Fragment } from 'react';
 import {withLabel} from './Components/label-context';
 import {forExport} from './Components/export-context';
 
-import Category from './Components/Category';
+import BlockCategory from './Components/BlockCategory';
 import TranslationElement from './Components/TranslationElement';
 import CardTermWithAudio from './Components/CardTermWithAudio';
 import PromptText from './Components/PromptText';
 import LinjaPona from './Components/LinjaPona';
 import CardTermOnly from './Components/CardTermOnly';
-import CardExamples from './Components/CardExamples';
+import BlockExamplesGroup from './Components/BlockExamplesGroup';
 import Background from './Components/Background';
-import AudioOnly from './Components/AudioOnly';
+import TermAudioOnly from './Components/TermAudioOnly';
 import Image from './Components/Image';
 import AccessibleImageGroup from './Components/AccessibleImageGroup';
-import TagBlock from './Components/TagBlock';
-import MnemonicBlock from './Components/MnemonicBlock';
+import BlockTag from './Components/BlockTag';
+import BlockMnemonic from './Components/BlockMnemonic';
 
 import PROMPTS from './toki_pona_prompts.json';
 import blackboard1 from './black-1072366.jpg';
@@ -46,10 +46,10 @@ const MNEMONIC_PROMPT = PROMPTS.tokiPonaPrompts.mnemonic.L1;
 //   };
 // }
 
-const ExpLabeledCategory = forExport(withLabel(Category));
+const ExpLabeledCategory = forExport(withLabel(BlockCategory));
 const ExpLabeledImage = forExport(withLabel(Image));
 const LabeledPromptText = withLabel(PromptText);
-const ExpLabeledAudioOnly = forExport(withLabel(AudioOnly));
+const ExpLabeledTermAudioOnly = forExport(withLabel(TermAudioOnly));
 const ExpLabeledCardTermOnly = forExport(withLabel(CardTermOnly));
 const ExpLabeledCardTermWithAudio = forExport(withLabel(CardTermWithAudio));
 const ExpLabeledTranslationElement = forExport(withLabel(TranslationElement));
@@ -113,7 +113,7 @@ class AnkiCard extends Component {
 						<LabeledPromptText
 							text={HEAR_PROMPT}
 						/>
-						<ExpLabeledAudioOnly
+						<ExpLabeledTermAudioOnly
 							labelName="Term Audio"
 						/>
 					</Fragment>
@@ -124,17 +124,13 @@ class AnkiCard extends Component {
 						<LabeledPromptText
 							text={WRITE_PROMPT}
 						/>
-						<ExpLabeledAudioOnly
-							labelName="Term Audio"
-						/>
+						<ExpLabeledTermAudioOnly labelName="Term Audio" />
 					</Fragment>
 				}
         {
 					cardType === "readSign" &&
 					<Fragment>
-						<LabeledPromptText
-							text={READ_SIGN_PROMPT}
-						/>
+						<LabeledPromptText text={READ_SIGN_PROMPT} />
             <ExpLabeledAccessibleImageGroup
               imageAddClass="sign-language-image"
               imageLabelName="Sign"
@@ -142,18 +138,15 @@ class AnkiCard extends Component {
               imageField={card.signImage}
               captionText={card.signDescription}
               textFieldName="signDescription"
+              /*todo: make this text hintable! */
             />
 					</Fragment>
 				}
         {
           cardType === "makeSign" &&
           <Fragment>
-            <LabeledPromptText
-              text={MAKE_SIGN_PROMPT}
-            />
-            <LinjaPona
-              field={card.linjaPona}
-            />
+            <LabeledPromptText text={MAKE_SIGN_PROMPT} />
+            <LinjaPona field={card.linjaPona} />
           </Fragment>
         }
 				{/*CARD DIVIDER*/}
@@ -167,9 +160,7 @@ class AnkiCard extends Component {
 							importance="low"
 							field={card.term}
 						/>
-						<LinjaPona
-							field={card.linjaPona}
-						/>
+						<LinjaPona field={card.linjaPona} />
 						<ExpLabeledTranslationElement
 							field={card.engTrans}
 						/>
@@ -183,9 +174,7 @@ class AnkiCard extends Component {
 							importance="low"
 							field={card.term}
 						/>
-						<LinjaPona
-							field={card.linjaPona}
-						/>
+						<LinjaPona field={card.linjaPona} />
 						<ExpLabeledImage
               additionalClass="card-image"
               labelName="Picture"
@@ -216,9 +205,7 @@ class AnkiCard extends Component {
 				{
 					(cardType === "hear" || cardType === "writeDictation") &&
 					<Fragment>
-						<LinjaPona
-							field={card.linjaPona}
-						/>
+						<LinjaPona field={card.linjaPona} />
 						<ExpLabeledImage
               additionalClass="card-image"
               labelName="Picture"
@@ -242,12 +229,10 @@ class AnkiCard extends Component {
 				{
 					cardType === "readTranslit" &&
 					<Fragment>
-						<ExpLabeledAudioOnly
+						<ExpLabeledTermAudioOnly
 							labelName="Term Audio"
 						/>
-						<LinjaPona
-							field={card.linjaPona}
-						/>
+						<LinjaPona field={card.linjaPona} />
 						<ExpLabeledImage
               additionalClass="card-image"
               labelName="Picture"
@@ -269,9 +254,7 @@ class AnkiCard extends Component {
               importance="low"
               field={card.term}
             />
-						<LinjaPona
-							field={card.linjaPona}
-						/>
+						<LinjaPona field={card.linjaPona} />
 						<ExpLabeledImage
               additionalClass="card-image"
 							labelName="Picture"
@@ -315,21 +298,15 @@ class AnkiCard extends Component {
 					</Fragment>
 				}
 				{/*for all cards, the following will render*/}
-
         <Fragment>
-  				<CardExamples
+  				<BlockExamplesGroup
   					audioField={"exampleSentenceAudio"}
   					exampleField={card.exampleSentence}
   					imageField={card.exampleImage}
   					translationField={card.exampleSentenceTrans}
   				/>
-          <MnemonicBlock
-            field={card.mnemonic}
-          />
-          <TagBlock
-            field={card.Tags}
-          />
-
+          <BlockMnemonic field={card.mnemonic} />
+          <BlockTag field={card.Tags} />
         </Fragment>
       </div>
     );

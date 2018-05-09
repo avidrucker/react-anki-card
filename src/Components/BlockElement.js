@@ -1,13 +1,13 @@
 import React from 'react';
 
-import ElementLabel from './ElementLabel';
+import BlockLabel from './BlockLabel';
 
 /*general dynamic block elements (composition as child only)*/
-const CardElement = ({additionalClass, field,
+const ElementBlock = ({additionalClass, field,
 	fieldName, importance, labelOn,
 	hintedOut, isForExport, labelName, size}) => (
 	<div className="card-element">
-		{!!labelOn && <ElementLabel text={labelName} />}
+		{!!labelOn && <BlockLabel text={labelName} />}
 		{
 			!isForExport &&
 			<div className={`${size} ${importance} ${additionalClass}`}>
@@ -35,7 +35,7 @@ const CardElement = ({additionalClass, field,
 	</div>
 );
 
-export default CardElement;
+export default ElementBlock;
 
 /*
 {

@@ -1,22 +1,22 @@
 import React from 'react';
 
-import AudioBlock from './AudioBlock';
-import CardElement from './CardElement';
+import BlockAudio from './BlockAudio';
+import BlockElement from './BlockElement';
 import ExampleImage from './ExampleImage';
 import {withLabel} from './label-context';
 import {forExport} from './export-context';
-const ExpLabeledAudioBlock = forExport(withLabel(AudioBlock));
-const ExpLabeledCardElement = forExport(withLabel(CardElement));
+const ExpLabeledBlockAudio = forExport(withLabel(BlockAudio));
+const ExpLabeledBlockElement = forExport(withLabel(BlockElement));
 
 //todo: question: is labelOn needed here?
-const CardExamples = ({audioField, exampleField, imageField, isForExport, translationField}) => (
+const BlockExamplesGroup = ({audioField, exampleField, imageField, isForExport, translationField}) => (
 	<div className="field-examples">
-		<ExpLabeledAudioBlock
+		<ExpLabeledBlockAudio
 			field={audioField}
 			fieldName="exampleSentenceAudio"
 			labelName="Example Audio"
 		/>
-		<ExpLabeledCardElement
+		<ExpLabeledBlockElement
 			field={exampleField}
 			fieldName="exampleSentence"
 			importance="medium"
@@ -26,7 +26,7 @@ const CardExamples = ({audioField, exampleField, imageField, isForExport, transl
 		<ExampleImage
 			field={imageField}
 		/>
-		<ExpLabeledCardElement
+		<ExpLabeledBlockElement
 			fieldName="exampleTranslation"
 			field={translationField}
 			hintedOut={false /*todo: change back to true*/}
@@ -37,4 +37,4 @@ const CardExamples = ({audioField, exampleField, imageField, isForExport, transl
 	</div>
 );
 
-export default CardExamples;
+export default BlockExamplesGroup;

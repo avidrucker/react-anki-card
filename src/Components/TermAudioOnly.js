@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react';
 
-import AudioSpan from './AudioSpan';
-import ElementLabel from './ElementLabel';
+import SpanAudio from './SpanAudio';
+import BlockLabel from './BlockLabel';
 
 /*high level block component that correlates directly with the audio field */
 /*todo: enable multi-audio preview VERY LOW PRIORITY */
-const AudioOnly = ({additionalClass, isForExport, labelOn, labelName}) => (
+const TermAudioOnly = ({additionalClass, isForExport, labelOn, labelName}) => (
 	<div className="card-element">
-		{!!labelOn && <ElementLabel text={labelName} />}
+		{!!labelOn && <BlockLabel text={labelName} />}
 		<div className={`card-element-line term-audio anki-card-audio ${additionalClass}`}>
 			{
 				!isForExport &&
-				<AudioSpan
+				<SpanAudio
 					name="L2 term audio"
 					field="▸"
 				/>
@@ -24,4 +24,4 @@ const AudioOnly = ({additionalClass, isForExport, labelOn, labelName}) => (
 	</div>
 );
 
-export default AudioOnly;
+export default TermAudioOnly;

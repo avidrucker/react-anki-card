@@ -1,20 +1,20 @@
 import React, {Fragment} from 'react';
 
-import ElementLabel from './ElementLabel';
+import BlockLabel from './BlockLabel';
 
 /*
 	Use this component to display text that isn't
 	dynamic/conditional (composition as child only).
 	Can be multi-line.
 */
-const StaticCardElement = ({additionalClass, importance, hintedOut, labelOn, labelName, size, text}) => (
+const BlockStaticElement = ({additionalClass, importance, hintedOut, labelOn, labelName, size, text}) => (
 	<Fragment>
 	{
 		!!text &&
 		<Fragment>
 		{
 			<div className="card-element">
-			{!!labelOn && <ElementLabel text={labelName} />}
+			{!!labelOn && <BlockLabel text={labelName} />}
 			<div className={`${size} ${importance} ${additionalClass}`}>
 				{text.split("\n").map(i => {
 					return (
@@ -38,4 +38,4 @@ const StaticCardElement = ({additionalClass, importance, hintedOut, labelOn, lab
 	</Fragment>
 );
 
-export default StaticCardElement;
+export default BlockStaticElement;

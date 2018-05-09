@@ -1,15 +1,15 @@
 import React from 'react';
 
-import CardElement from './CardElement';
-import { withLabel } from './label-context';
-import { forExport } from './export-context';
-const ExpLabeledCardElement = forExport(withLabel(CardElement));
+import BlockElement from './BlockElement';
+import {withLabel} from './label-context';
+import {forExport} from './export-context';
+const ExpLabeledBlockElement = forExport(withLabel(BlockElement));
 
 //todo: verify the correct text for "fieldName"
 /*generally the English translation of L2 term*/
-/* todo: add hintedOut option to StaticCardElement*/
+/* todo: add hintedOut option to StaticElementBlock*/
 const TranslationElement = ({field, importance}) => (
-	<ExpLabeledCardElement
+	<ExpLabeledBlockElement
 		labelName="English Translation"
 		fieldName="translation"
 		size="regular"

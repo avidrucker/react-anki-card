@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
-import CardElementSpan from './CardElementSpan';
-import ElementLabel from './ElementLabel';
+import SpanElement from './SpanElement';
+import BlockLabel from './BlockLabel';
 
 /*generally appears at the top/bottom of each card to make it clear which deck the learner is currently using.
 this may be substituted with a country flag or other visual indicator such as a logo or Unicode symbol */
 //todo: implement expert mode switch which doesn't even render any components, just text
-class Category extends Component {
+class BlockCategory extends Component {
 	render() {
 		const {theme, cardLang, cardType, labelOn, isForExport } = this.props;
 
 		return (
 			<div className="card-element">
-				{!!labelOn && <ElementLabel additionalClass={theme} text="Language & Card Type" />}
+				{!!labelOn && <BlockLabel additionalClass={theme} text="Language & Card Type" />}
 				<div className="card-element-line small low special-field-category">
 					{
 						!isForExport &&
 						<div>
-							<CardElementSpan
+							<SpanElement
 								name="language"
 								field={cardLang}
 							/>
 							{"::"}
-							<CardElementSpan
+							<SpanElement
 								name="card type"
 								field={cardType}
 							/>
@@ -37,4 +37,4 @@ class Category extends Component {
 	}
 };
 
-export default Category;
+export default BlockCategory;

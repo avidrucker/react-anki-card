@@ -1,13 +1,14 @@
 import React from 'react';
 
-import CardElement from './CardElement';
+import BlockElement from './BlockElement';
 import {withLabel} from './label-context';
 import {forExport} from './export-context';
-const ExpLabeledCardElement = forExport(withLabel(CardElement));
+const ExpLabeledBlockElement = forExport(withLabel(BlockElement));
 
 /*use this component to mark element blocks (primarily for testing) */
-const TagBlock = ({field}) => (
-  <ExpLabeledCardElement
+const BlockTag = ({field}) => (
+  !!field &&
+  <ExpLabeledBlockElement
     additionalClass="card-tags"
     fieldName="Tags"
     field={field}
@@ -18,4 +19,4 @@ const TagBlock = ({field}) => (
   />
 );
 
-export default TagBlock;
+export default BlockTag;

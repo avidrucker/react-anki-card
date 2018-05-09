@@ -1,10 +1,10 @@
 import React from 'react';
 
-import StaticCardElement from './StaticCardElement';
+import BlockStaticElement from './BlockStaticElement';
 
 /*todo: question: should prompt text always inherit color/styling? */
 const PromptText = ({labelOn, text}) => (
-	<StaticCardElement
+	<BlockStaticElement
 		labelName="Card Prompt"
 		labelOn={labelOn}
 		size="small"

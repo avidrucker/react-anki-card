@@ -13,9 +13,9 @@
 			"exampleSentenceAudio":"three sound files",
 			"signImage":"sign_ali.jpg",
 			"signDescription":"wiggling hands in front of chest, palms forward (both hands)",
-			"mnemonic":"",
+			"mnemonic":"Prince --- Babwa could do it ___!",
 			"blank1":"",
-			"Tags":"Noun adjective base current2017 number"
+			"Tags":"Noun adjective base number"
 		},
 		{
 			"term":"ijo",
@@ -32,7 +32,7 @@
 			"signDescription":"thumb hand in front of chest, thumb pointing left",
 			"mnemonic":"",
 			"blank1":"",
-			"Tags":"Noun base"
+			"Tags":""
 		},
 		{
 			"term":"ilo",
@@ -47,7 +47,7 @@
 			"exampleSentenceAudio":"file",
 			"signImage":"sign_ilo.jpg",
 			"signDescription":"thumb hand on top of left fist, palm up & thumb pointing forward",
-			"mnemonic":"",
+			"mnemonic":"Behind the barn in the s--- there are some handy ___s.",
 			"blank1":"",
 			"Tags":"Noun base"
 		}

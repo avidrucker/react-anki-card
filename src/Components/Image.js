@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ElementLabel from './ElementLabel';
+import BlockLabel from './BlockLabel';
 
 /*general image, this can represent a text image, a photo, a picture, but is not meant for use as the background wallpaper*?
 /*todo: implement SVG linja pona, SVG fontawesome*/
@@ -17,7 +17,7 @@ const Image = ({additionalClass, isForExport, labelOn, labelName, fieldName, res
 
 	return (
 		<div className="anki-card-image">
-			{!!labelOn && <ElementLabel text={labelName} />}
+			{!!labelOn && <BlockLabel text={labelName} />}
 			<div className="card-element-line">
 				{
 					!isForExport &&
