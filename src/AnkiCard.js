@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 
+import {LabelContext,LabelProvider, withLabel} from './Components/label-context';
 import Category from './Components/Category';
 import TranslationElement from './Components/TranslationElement';
 import CardTermWithAudio from './Components/CardTermWithAudio';
@@ -48,7 +49,7 @@ export function withTheme(Component) {
 }
 
 
-
+const LabeledCategory = withLabel(Category);
 
 
 //todo: implement ideal view AND basic view (ideal view has one sound file per sentence on each line, whereas basic view has sound buttons grouped in a row above or below each example block)
@@ -60,11 +61,10 @@ class AnkiCard extends Component {
     return (
 			<div className="anki-card-entire">
 				{/*CARD FRONT*/}
-				<Category
+				<LabeledCategory
 					cardLang={cardLang}
 					cardType={cardType}
 					isForExport={isForExport}
-					labelOn={labelOn}
 				/>
 				{
 					cardType === "look" &&
