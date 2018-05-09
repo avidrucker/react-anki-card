@@ -28,7 +28,7 @@
 }
 
 .sign-language-image {
-	height: 12em
+	height: 12em;
 }
 
 .linja-pona {
@@ -40,15 +40,15 @@
 }
 
 .example-image {
-	height: 8em
+	height: 8em;
 }
 
 .big {
-	font-size: 2em
+	font-size: 2em;
 }
 
 .small {
-	font-size: 0.75em
+	font-size: 0.75em;
 }
 
 /*todo: change this so it only activates for zen_bw theme*/
@@ -69,13 +69,13 @@
 }
 
 /*uncomment below for wire-frames*/
-
+/*
 .anki-card-audio { border: 1px solid red }
 .card-element { border: 1px solid blue }
 .card-element-line { border: 1px solid purple }
 .anki-card-image { border: 1px solid green }
 .card-element-span { border: 1px solid orange }
-
+*/
 /*WIREFRAMES END*/
 
 /*MARGINS & PADDING BEGIN*/
@@ -121,4 +121,4 @@
 */
 
 /*testing*/
-.field-examples { background-color: var(--chalk-salmon) }
+.field-examples { /*background-color: var(--chalk-salmon)*/ }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CardElementSpan from './CardElementSpan';
 import ElementLabel from './ElementLabel';
-//import {withTheme} from '../theme-context';
 
 import {LabelContext,LabelProvider, withLabel} from './label-context';
 

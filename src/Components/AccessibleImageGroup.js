@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Image from './Image';
 import AccessibilityText from './AccessibilityText';
@@ -14,23 +14,25 @@ const AccessibleImageGroup = ({imageAddClass,
     isForExport, labelOn, imageField, imageLabelName,
     imageFieldName, textFieldName, textAddClass,
     captionText}) => {
-  return (<div className="wrapper">
-    <Image
-      additionalClass={imageAddClass}
-      labelName={imageLabelName}
-      fieldName={imageFieldName}
-      resource={imageField}
-      isForExport={isForExport}
-      labelOn={labelOn}
-    />
-    <AccessibilityText
-      labelName={imageLabelName}
-      labelOn={labelOn}
-      field={captionText}
-      fieldName={textFieldName}
-      isForExport={isForExport}
-    />
-  </div>)
+  return (
+    <Fragment>
+      <Image
+        additionalClass={imageAddClass}
+        labelName={imageLabelName}
+        fieldName={imageFieldName}
+        resource={imageField}
+        isForExport={isForExport}
+        labelOn={labelOn}
+      />
+      <AccessibilityText
+        labelName={imageLabelName}
+        labelOn={labelOn}
+        field={captionText}
+        fieldName={textFieldName}
+        isForExport={isForExport}
+      />
+    </Fragment>
+  )
 };
 
 export default AccessibleImageGroup;
