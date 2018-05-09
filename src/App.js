@@ -4,18 +4,19 @@ import './App.css';
 
 import CARDS from './sample_toki_pona.json';
 import AnkiCard from './AnkiCard';
+import {LabelContext} from './Components/label-context';
 
 const CARD_INDEX = 2; //TEST: 0=="ali", 1=="ilo", 2=="ijo"
-const TYPE_INDEX = 7; //TEST: 0=="look", 1=="hear", 2=="readLinjaPona",
+const TYPE_INDEX = 1; //TEST: 0=="look", 1=="hear", 2=="readLinjaPona",
 //3=="readTranslit", 4=="recall", 5=="writeDictation", 6=="readSign", 7=="makeSign"
 const PROMPT_INDEX = 0; //0==english, 1==toki pona
 const LABEL_ON = true; //formerly SHOW_ELEMENT_NAME
-const IS_FOR_EXPORT = true; //formerly EXPORT_MODE
+const IS_FOR_EXPORT = false; //formerly EXPORT_MODE
 const CARD_TYPES = ["look","hear","readLinjaPona","readTranslit","recall","writeDictation","readSign","makeSign"]
 const CARD_TYPE = CARD_TYPES[TYPE_INDEX];
 
-const THEME_INDEX = 0;
-const THEMES = ["zen_bw","black_board","zen_burn","index_card"];
+const THEME_INDEX = 2;
+const THEMES = ['light','dark',"zen_bw","black_board","zen_burn","index_card",'dark'];
 const THEME = THEMES[THEME_INDEX];
 
 //todo: implement "readLinjaPona (translate L2-to-L1), writeLinjaPona(dictate), hear(listen), look(picture), recall(translate L1-to-L2)" (WIP)
@@ -37,21 +38,37 @@ within a TermWrapper HOC like so:
 */
 
 
+
 class App extends Component {
   render() {
+
+		
+
     return (
       <div className="App">
-				<AnkiCard
+			<LabelContext.Provider value={true}>
+				<Content />
+				</LabelContext.Provider>
+      </div>
+    );
+	
+	
+	}
+}
+
+function Content() {
+	return (
+		<div>
+			<AnkiCard
 					card={CARDS.tokiPona[CARD_INDEX]}
 					cardLang="toki pona"
 					cardType={CARD_TYPE}
 					isForExport={IS_FOR_EXPORT}
 					labelOn={LABEL_ON}
-					theme={THEME}
+					theme = {THEME}
 				/>
-      </div>
-    );
-  }
+		</div>
+	);
 }
 
 export default App;

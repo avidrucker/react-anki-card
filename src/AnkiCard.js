@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import Category from './Components/Category';
 import TranslationElement from './Components/TranslationElement';
 import CardTermWithAudio from './Components/CardTermWithAudio';
@@ -27,6 +28,28 @@ const WRITE_PROMPT2 = PROMPTS.tokiPonaPrompts.write.L1;
 const READ_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.readSign.L1;
 const MAKE_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.makeSign.L1;
 const MNEMONIC_PROMPT = PROMPTS.tokiPonaPrompts.mnemonic.L1;
+
+
+
+const ThemeContext = React.createContext('light');
+
+// This function takes a component...
+export function withTheme(Component) {
+  // ...and returns another component...
+  return function ThemedComponent(props) {
+    // ... and renders the wrapped component with the context theme!
+    // Notice that we pass through any additional props as well
+    return (
+      <ThemeContext.Consumer>
+        {theme => <Component {...props} theme={theme} />}
+      </ThemeContext.Consumer>
+    );
+  };
+}
+
+
+
+
 
 //todo: implement ideal view AND basic view (ideal view has one sound file per sentence on each line, whereas basic view has sound buttons grouped in a row above or below each example block)
 class AnkiCard extends Component {
@@ -376,13 +399,7 @@ class AnkiCard extends Component {
           field={card.Tags}
           isForExport={isForExport}
         />
-				{
-					theme === "black_board" &&
-					<Background
-						name={theme}
-						resource={blackboard1}
-					/>
-				}
+
 
       </div>
     );
