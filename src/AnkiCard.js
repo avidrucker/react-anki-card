@@ -18,8 +18,8 @@ import BlockTag from './Components/BlockTag';
 import BlockMnemonic from './Components/BlockMnemonic';
 
 import PROMPTS from './toki_pona_prompts.json';
-import blackboard1 from './black-1072366.jpg';
-import blackboard2 from './board-2167844.jpg';
+import blackboard1 from './board1.jpg';
+import blackboard2 from './board2.jpg';
 
 const READ_PROMPT = PROMPTS.tokiPonaPrompts.readLinjaPona.L1;
 const READ_PROMPT2 = PROMPTS.tokiPonaPrompts.readTranslit.L1;
@@ -30,22 +30,6 @@ const READ_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.readSign.L1;
 const MAKE_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.makeSign.L1;
 const MNEMONIC_PROMPT = PROMPTS.tokiPonaPrompts.mnemonic.L1;
 
-// const ThemeContext = React.createContext('light');
-//
-// // This function takes a component...
-// export function withTheme(Component) {
-//   // ...and returns another component...
-//   return function ThemedComponent(props) {
-//     // ... and renders the wrapped component with the context theme!
-//     // Notice that we pass through any additional props as well
-//     return (
-//       <ThemeContext.Consumer>
-//         {theme => <Component {...props} theme={theme} />}
-//       </ThemeContext.Consumer>
-//     );
-//   };
-// }
-
 const ExpLabeledCategory = forExport(withLabel(BlockCategory));
 const ExpLabeledImage = forExport(withLabel(Image));
 const LabeledPromptText = withLabel(PromptText);
@@ -55,7 +39,6 @@ const ExpLabeledCardTermWithAudio = forExport(withLabel(CardTermWithAudio));
 const ExpLabeledTranslationElement = forExport(withLabel(TranslationElement));
 const ExpLabeledAccessibleImageGroup = forExport(withLabel(AccessibleImageGroup));
 
-//todo: implement ideal view AND basic view (ideal view has one sound file per sentence on each line, whereas basic view has sound buttons grouped in a row above or below each example block)
 class AnkiCard extends Component {
   render() {
 		const {card, cardLang, cardType, theme} = this.props;
@@ -307,6 +290,7 @@ class AnkiCard extends Component {
   				/>
           <BlockMnemonic field={card.mnemonic} />
           <BlockTag field={card.Tags} />
+          {/*<Background theme={theme} />*/}
         </Fragment>
       </div>
     );

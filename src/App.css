@@ -51,7 +51,7 @@
 	font-size: 0.75em;
 }
 
-/*todo: change this so it only activates for zen_bw theme*/
+/*todo: change this so it only activates for zen-light (and zen-dark?) theme(s)*/
 .low {
 	opacity: 0.5;
 }
@@ -68,23 +68,11 @@
 	position: relative;
 }
 
-/*uncomment below for wire-frames*/
-/*
-.anki-card-audio { border: 1px solid red }
-.card-element { border: 1px solid blue }
-.card-element-line { border: 1px solid purple }
-.anki-card-image { border: 1px solid green }
-.card-element-span { border: 1px solid orange }
-*/
-/*WIREFRAMES END*/
-
 /*MARGINS & PADDING BEGIN*/
-
 .anki-card-audio, .card-element, .card-element-line, .anki-card-image, .card-element-span {
 	padding: 2px;
 	margin: 2px;
 }
-
 /*MARGINS & PADDING END*/
 
 .element-tag {
@@ -122,3 +110,14 @@
 
 /*testing*/
 .field-examples { /*background-color: var(--chalk-salmon)*/ }
+
+/*uncomment below for wire-frames*/
+/*WIREFRAMES START*/
+/*
+.anki-card-audio { border: 1px solid red }
+.card-element { border: 1px solid blue }
+.card-element-line { border: 1px solid purple }
+.anki-card-image { border: 1px solid green }
+.card-element-span { border: 1px solid orange }
+*/
+/*WIREFRAMES END*/
