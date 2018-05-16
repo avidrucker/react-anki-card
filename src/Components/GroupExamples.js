@@ -2,14 +2,14 @@ import React from 'react';
 
 import BlockAudio from './BlockAudio';
 import BlockElement from './BlockElement';
-import ExampleImage from './ExampleImage';
+import ELExampleImage from './ELExampleImage';
 import {withLabel} from './label-context';
 import {forExport} from './export-context';
 const ExpLabeledBlockAudio = forExport(withLabel(BlockAudio));
 const ExpLabeledBlockElement = forExport(withLabel(BlockElement));
 
 //todo: question: is labelOn needed here?
-const BlockExamplesGroup = ({audioField, exampleField, imageField, isForExport, translationField}) => (
+const GroupExamples = ({audioField, exampleField, imageField, isForExport, translationField}) => (
 	<div className="field-examples">
 		<ExpLabeledBlockAudio
 			field={audioField}
@@ -23,7 +23,7 @@ const BlockExamplesGroup = ({audioField, exampleField, imageField, isForExport, 
 			labelName="Example Sentence"
 			size="small"
 		/>
-		<ExampleImage
+		<ELExampleImage
 			field={imageField}
 		/>
 		<ExpLabeledBlockElement
@@ -37,4 +37,4 @@ const BlockExamplesGroup = ({audioField, exampleField, imageField, isForExport, 
 	</div>
 );
 
-export default BlockExamplesGroup;
+export default GroupExamples;

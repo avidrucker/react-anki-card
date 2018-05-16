@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import BlockElement from './BlockElement';
 import {withLabel} from './label-context';
@@ -7,17 +7,16 @@ import {withTheme} from './theme-context';
 const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
 
 /*use this component to mark element blocks (primarily for testing) */
-const BlockTag = ({field}) => (
-  !!field &&
+const ELMnemonic = ({field}) => (
+  // labelName, size, isForExport
   <ExtendedBlockElement
-    additionalClass="card-tags"
-    fieldName="Tags"
+    additionalClass="card-mnemonic"
+    fieldName="mnemonic"
     field={field}
+    labelName="Mnemonic Device"
     importance="low"
-    hintedOut={false /*todo: (UXUI improvement) change this to true before production*/}
-    labelName="Tags"
     size="small"
   />
 );
 
-export default BlockTag;
+export default ELMnemonic;

@@ -1,29 +1,22 @@
 import React, { Fragment } from 'react';
-import SpanElement from './SpanElement';
-import BlockLabel from './BlockLabel';
+
+import BlockElement from './BlockElement';
+import {withLabel} from './label-context';
+import {forExport} from './export-context';
+import {withTheme} from './theme-context';
+const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
 
 /*high level block component that correlates directly with term field */
-const CardTermOnly = ({labelName, isForExport, field, labelOn, size, importance, hintedOut}) => (
-	<div className="card-element">
-		{!!labelOn && <BlockLabel text={labelName} />}
-		<div className="card-element-line">
-			{
-				!isForExport &&
-				<SpanElement
-					fieldName="L2 term"
-					size={!size ? "big" : size}
-					additionalClass="field-term"
-					importance={!importance ? "high" : importance}
-					hintedOut={hintedOut}
-					field={field}
-				/>
-			}
-			{
-				!!isForExport &&
-				<Fragment>{`{{term}}`}</Fragment>
-			}
-		</div>
-	</div>
+const CardTermOnly = ({additionalClass, field, size, importance, hintedOut}) => (
+	<ExtendedBlockElement
+		additionalClass={additionalClass}
+		field={field}
+		fieldName="L2 term"
+		hintedOut={hintedOut}
+		importance={!importance ? "low" : importance}
+		labelName="Carm Term Only"
+		size={!size ? "regular" : size}
+	/>
 );
 
 export default CardTermOnly;

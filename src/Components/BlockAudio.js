@@ -17,7 +17,11 @@ const AudioBlock = ({additionalClass, isForExport, field, labelOn, labelName, fi
 				);
 			})}
 			{
-				!!isForExport && <div>{`{{${fieldName}}}`}</div>
+				!!isForExport &&
+				<div
+					className={`card-element-line anki-card-audio ${additionalClass}`}>
+						{`{{${fieldName}}}`}
+				</div>
 			}
 		</div>
 	</div>

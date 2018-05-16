@@ -2,26 +2,27 @@ import React, { Component, Fragment } from 'react';
 
 import {withLabel} from './Components/label-context';
 import {forExport} from './Components/export-context';
+import {withTheme} from './Components/theme-context';
 
-import BlockCategory from './Components/BlockCategory';
+import ELCategory from './Components/ELCategory';
 import TranslationElement from './Components/TranslationElement';
 import CardTermWithAudio from './Components/CardTermWithAudio';
-import PromptText from './Components/PromptText';
-import LinjaPona from './Components/LinjaPona';
+import ELPrompt from './Components/ELPrompt';
+import ELLinjaPona from './Components/ELLinjaPona';
+import ELImage from './Components/ELImage';
 import CardTermOnly from './Components/CardTermOnly';
-import BlockExamplesGroup from './Components/BlockExamplesGroup';
+import GroupExamples from './Components/GroupExamples';
 import Background from './Components/Background';
-import TermAudioOnly from './Components/TermAudioOnly';
-import Image from './Components/Image';
-import AccessibleImageGroup from './Components/AccessibleImageGroup';
+import BlockTermAudio from './Components/BlockTermAudio';
+import A11yImageGroup from './Components/A11yImageGroup';
 import BlockTag from './Components/BlockTag';
-import BlockMnemonic from './Components/BlockMnemonic';
+import ELMnemonic from './Components/ELMnemonic';
 
 import PROMPTS from './toki_pona_prompts.json';
 import blackboard1 from './board1.jpg';
 import blackboard2 from './board2.jpg';
 
-const READ_PROMPT = PROMPTS.tokiPonaPrompts.readLinjaPona.L1;
+const READ_PROMPT = PROMPTS.tokiPonaPrompts.readELLinjaPona.L1;
 const READ_PROMPT2 = PROMPTS.tokiPonaPrompts.readTranslit.L1;
 const HEAR_PROMPT = PROMPTS.tokiPonaPrompts.hear.L1;
 const WRITE_PROMPT = PROMPTS.tokiPonaPrompts.transcribe.L1;
@@ -30,60 +31,46 @@ const READ_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.readSign.L1;
 const MAKE_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.makeSign.L1;
 const MNEMONIC_PROMPT = PROMPTS.tokiPonaPrompts.mnemonic.L1;
 
-const ExpLabeledCategory = forExport(withLabel(BlockCategory));
-const ExpLabeledImage = forExport(withLabel(Image));
-const LabeledPromptText = withLabel(PromptText);
-const ExpLabeledTermAudioOnly = forExport(withLabel(TermAudioOnly));
-const ExpLabeledCardTermOnly = forExport(withLabel(CardTermOnly));
 const ExpLabeledCardTermWithAudio = forExport(withLabel(CardTermWithAudio));
-const ExpLabeledTranslationElement = forExport(withLabel(TranslationElement));
-const ExpLabeledAccessibleImageGroup = forExport(withLabel(AccessibleImageGroup));
+const ExtendedCategory = forExport(withLabel(withTheme(ELCategory)));
+const ExtendedTermAudio = forExport(withLabel(withTheme(BlockTermAudio)));
+const ExtendedA11yImageGroup = forExport(withLabel(A11yImageGroup));
+const ThemedBackground = withTheme(Background);
 
 class AnkiCard extends Component {
   render() {
 		const {card, cardLang, cardType, theme} = this.props;
 
+    const TPlightDark = (theme === "black-board") ? card.TPlinjaPonaDark : card.TPlinjaPonaLight ;
+    const TPlightDarkfield = (theme === "black-board") ? "linjaPonaDark" : "linjaPonaLight" ;
+
     return (
 			<div className="anki-card-entire">
 				{/*CARD FRONT*/}
-				<ExpLabeledCategory
+				<ExtendedCategory
 					cardLang={cardLang}
 					cardType={cardType}
 				/>
 				{
 					cardType === "look" &&
-					<ExpLabeledImage
-            additionalClass="card-image"
-            labelName="Picture"
-						fieldName="image"
-						resource={card.image}
-					/>
+					<ELImage field={card.image} />
 				}
 				{
 					cardType === "recall" &&
-          <ExpLabeledTranslationElement
-            field={card.engTrans}
-          />
+          <TranslationElement field={card.engTrans} />
 				}
 				{
-					cardType === "readLinjaPona" &&
+					cardType === "readELLinjaPona" &&
 					<Fragment>
-						<LabeledPromptText
-							text={READ_PROMPT}
-						/>
-						<LinjaPona
-							field={card.linjaPona}
-						/>
+						<ELPrompt text={READ_PROMPT} />
+						<ELLinjaPona field={TPlightDark} fieldName={TPlightDarkfield} />
 					</Fragment>
 				}
 				{
 					cardType === "readTranslit" &&
 					<Fragment>
-						<LabeledPromptText
-							text={READ_PROMPT2}
-						/>
-						<ExpLabeledCardTermOnly
-							labelName="Term Only"
+						<ELPrompt text={READ_PROMPT2} />
+						<CardTermOnly
 							field={card.term}
               size="big"
 							importance="high"
@@ -93,33 +80,30 @@ class AnkiCard extends Component {
 				{
 					cardType === "hear" &&
 					<Fragment>
-						<LabeledPromptText
-							text={HEAR_PROMPT}
-						/>
-						<ExpLabeledTermAudioOnly
-							labelName="Term Audio"
-						/>
+						<ELPrompt
+              text={HEAR_PROMPT}
+              additionalClass="quaternary-color"
+            />
+						<ExtendedTermAudio additionalClass="primary-color" />
 					</Fragment>
 				}
 				{
 					cardType === "writeDictation" &&
 					<Fragment>
-						<LabeledPromptText
-							text={WRITE_PROMPT}
-						/>
-						<ExpLabeledTermAudioOnly labelName="Term Audio" />
+						<ELPrompt text={WRITE_PROMPT} />
+						<ExtendedTermAudio additionalClass="primary-color" />
 					</Fragment>
 				}
         {
 					cardType === "readSign" &&
 					<Fragment>
-						<LabeledPromptText text={READ_SIGN_PROMPT} />
-            <ExpLabeledAccessibleImageGroup
+						<ELPrompt text={READ_SIGN_PROMPT} />
+            <ExtendedA11yImageGroup
               imageAddClass="sign-language-image"
               imageLabelName="Sign"
               imageFieldName="signImage"
-              imageField={card.signImage}
-              captionText={card.signDescription}
+              imageField={card.TPsignImage}
+              captionText={card.TPsignDescription}
               textFieldName="signDescription"
               /*todo: make this text hintable! */
             />
@@ -128,8 +112,8 @@ class AnkiCard extends Component {
         {
           cardType === "makeSign" &&
           <Fragment>
-            <LabeledPromptText text={MAKE_SIGN_PROMPT} />
-            <LinjaPona field={card.linjaPona} />
+            <ELPrompt text={MAKE_SIGN_PROMPT} />
+            <ELLinjaPona field={TPlightDark} fieldName={TPlightDarkfield} />
           </Fragment>
         }
 				{/*CARD DIVIDER*/}
@@ -138,93 +122,55 @@ class AnkiCard extends Component {
 				{
 					cardType === "look" &&
 					<Fragment>
-						<ExpLabeledCardTermWithAudio
-							labelName="Term & Audio"
-							importance="low"
-							field={card.term}
-						/>
-						<LinjaPona field={card.linjaPona} />
-						<ExpLabeledTranslationElement
-							field={card.engTrans}
-						/>
+						<ExpLabeledCardTermWithAudio field={card.term} />
+						<ELLinjaPona field={TPlightDark} fieldName={TPlightDarkfield} />
+						<TranslationElement	field={card.engTrans}	/>
 					</Fragment>
 				}
 				{
 					cardType === "recall" &&
 					<Fragment>
-						<ExpLabeledCardTermWithAudio
-							labelName="Term & Audio"
-							importance="low"
-							field={card.term}
-						/>
-						<LinjaPona field={card.linjaPona} />
-						<ExpLabeledImage
-              additionalClass="card-image"
-              labelName="Picture"
-							fieldName="image"
-							resource={card.image}
-						/>
+						<ExpLabeledCardTermWithAudio field={card.term} />
+						<ELLinjaPona field={TPlightDark} fieldName={TPlightDarkfield} />
+            <ELImage field={card.image} />
 					</Fragment>
 				}
 				{
-					cardType === "readLinjaPona" &&
+					cardType === "readELLinjaPona" &&
 					<Fragment>
-						<ExpLabeledCardTermWithAudio
-							labelName="Term & Audio"
-							importance="low"
-							field={card.term}
-						/>
-						<ExpLabeledImage
-              additionalClass="card-image"
-              labelName="Picture"
-							fieldName="image"
-							resource={card.image}
-						/>
-						<ExpLabeledTranslationElement
-							field={card.engTrans}
-						/>
+						<ExpLabeledCardTermWithAudio field={card.term} />
+						<ELImage field={card.image} />
+						<TranslationElement field={card.engTrans}	/>
 					</Fragment>
 				}
 				{
 					(cardType === "hear" || cardType === "writeDictation") &&
 					<Fragment>
-						<LinjaPona field={card.linjaPona} />
-						<ExpLabeledImage
-              additionalClass="card-image"
-              labelName="Picture"
-							fieldName="image"
-							resource={card.image}
-						/>
-						<ExpLabeledCardTermOnly
-							labelName="Term Only"
-							size="regular"
-							importance="low"
+						<ELLinjaPona
+              field={TPlightDark}
+              fieldName={TPlightDarkfield}
+            />
+						<ELImage field={card.image} />
+						<CardTermOnly
+              additionalClass="tertiary-color"
 							field={card.term}
 							hintedOut={false /*change this back to true*/}
 						/>
-						<ExpLabeledTranslationElement
+						<TranslationElement
 							field={card.engTrans}
-							importance="low"
 							hintedOut={true}
+              additionalClass="secondary-color"
 						/>
 					</Fragment>
 				}
 				{
 					cardType === "readTranslit" &&
 					<Fragment>
-						<ExpLabeledTermAudioOnly
-							labelName="Term Audio"
-						/>
-						<LinjaPona field={card.linjaPona} />
-						<ExpLabeledImage
-              additionalClass="card-image"
-              labelName="Picture"
-							fieldName="image"
-							resource={card.image}
-						/>
-						<ExpLabeledTranslationElement
+						<ExtendedTermAudio />
+						<ELLinjaPona field={TPlightDark} fieldName={TPlightDarkfield} />
+						<ELImage field={card.image} />
+						<TranslationElement
 							field={card.engTrans}
-							importance="low"
 							hintedOut={true}
 						/>
 					</Fragment>
@@ -232,21 +178,11 @@ class AnkiCard extends Component {
         {
 					cardType === "readSign" &&
 					<Fragment>
-            <ExpLabeledCardTermWithAudio
-              labelName="Term & Audio"
-              importance="low"
-              field={card.term}
-            />
-						<LinjaPona field={card.linjaPona} />
-						<ExpLabeledImage
-              additionalClass="card-image"
-							labelName="Picture"
-							fieldName="image"
-							resource={card.image}
-						/>
-						<ExpLabeledTranslationElement
+            <ExpLabeledCardTermWithAudio field={card.term} />
+						<ELLinjaPona field={TPlightDark} fieldName={TPlightDarkfield} />
+						<ELImage field={card.image} />
+						<TranslationElement
 							field={card.engTrans}
-							importance="low"
 							hintedOut={true}
 						/>
 					</Fragment>
@@ -254,43 +190,41 @@ class AnkiCard extends Component {
         {
 					cardType === "makeSign" &&
 					<Fragment>
-            <ExpLabeledAccessibleImageGroup
+            <ExtendedA11yImageGroup
               imageAddClass="sign-language-image"
               imageLabelName="Sign"
               imageFieldName="signImage"
-              imageField={card.signImage}
-              captionText={card.signDescription}
+              imageField={card.TPsignImage}
+              captionText={card.TPsignDescription}
               textFieldName="signDescription"
             />
-            <ExpLabeledCardTermWithAudio
-              labelName="Term & Audio"
-              importance="low"
-              field={card.term}
-            />
-						<ExpLabeledImage
-              additionalClass="card-image"
-              labelName="Picture"
-							fieldName="image"
-							resource={card.image}
-						/>
-						<ExpLabeledTranslationElement
+            <ExpLabeledCardTermWithAudio field={card.term} />
+						<ELImage field={card.image} />
+						<TranslationElement
 							field={card.engTrans}
-							importance="low"
               hintedOut={true}
 						/>
 					</Fragment>
 				}
 				{/*for all cards, the following will render*/}
         <Fragment>
-  				<BlockExamplesGroup
+  				<GroupExamples
   					audioField={"exampleSentenceAudio"}
   					exampleField={card.exampleSentence}
   					imageField={card.exampleImage}
   					translationField={card.exampleSentenceTrans}
   				/>
-          <BlockMnemonic field={card.mnemonic} />
+          <ELMnemonic field={card.mnemonic} />
           <BlockTag field={card.Tags} />
-          {/*<Background theme={theme} />*/}
+          {
+            theme === "black-board" &&
+            <ThemedBackground
+              additionalClass="blackboard-bg-fallback"
+              imgAlt="blackboard image"
+              resourceImg={blackboard1}
+              theme={theme}
+            />
+          }
         </Fragment>
       </div>
     );

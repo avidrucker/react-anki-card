@@ -1,47 +1,41 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import BlockLabel from './BlockLabel';
 
-/*general dynamic block elements (composition as child only)*/
-const ElementBlock = ({additionalClass, field,
-	fieldName, importance, labelOn,
-	hintedOut, isForExport, labelName, size}) => (
-	<div className="card-element">
-		{!!labelOn && <BlockLabel text={labelName} />}
+/*"smart" block elements (composition as child only) which
+determine whether to render a label, what fields to used
+depending on the theme (ie. imageWhite or imageBlack fields),
+as well as whether to make child components hintedOut or isForExport*/
+const BlockElement = ({additionalClass, field, fieldName, importance,
+	labelOn, theme, hintedOut, isForExport, labelName, size}) => {
+	const themeStyle = (theme === "black-board") ? "pastel-chalk-text" : "";
+
+	return(
+	<div className={`card-element ${size} ${importance} ${additionalClass} ${themeStyle}`}>
+		{!!labelOn && <BlockLabel theme={theme} text={labelName} />}
 		{
 			!isForExport &&
-			<div className={`${size} ${importance} ${additionalClass}`}>
+			<Fragment>
 				{
 					field.split("\n").map(i => {
 						return (
-							<div className="card-element-line" key={i+100}>
+							<div className="card-element-line" key={i+200}>
 								{!hintedOut && i}
-								{!!hintedOut && `[show ${fieldName}]`}
+								{!!hintedOut && `[...show ${fieldName}]`}
 							</div>
 							);
 						}
 					)
 				}
-			</div>
+			</Fragment>
 		}
 		{
 			!!isForExport &&
-			<div className={`${size} ${importance} ${additionalClass}`}>
 				<div className="card-element-line">
 					{`{{${fieldName}}}`}
 				</div>
-			</div>
 		}
-	</div>
-);
+	</div>);
+};
 
-export default ElementBlock;
-
-/*
-{
-	!!EXPORT_MODE &&
-	<div className="card-element-line">
-		{`{{${field}}}`}
-	</div>
-}
-*/
+export default BlockElement;

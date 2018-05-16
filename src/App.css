@@ -5,16 +5,20 @@
 	--chalk-salmon: #cc9393;
 }
 
-.primary-color {
+.primary-color.pastel-chalk-text {
 	color: var(--chalk-yellow) /*todo: implement theme toggling*/
 }
 
-.secondary-color {
+.secondary-color.pastel-chalk-text {
 	color: var(--chalk-lightblue)
 }
 
-.tertiary-color {
+.tertiary-color.pastel-chalk-text {
 	color: var(--chalk-lightgreen)
+}
+
+.quaternary-color.pastel-chalk-text {
+	color: var(--chalk-salmon);
 }
 
 .anki-card-entire {
@@ -52,7 +56,7 @@
 }
 
 /*todo: change this so it only activates for zen-light (and zen-dark?) theme(s)*/
-.low {
+.transparency-enabled .low {
 	opacity: 0.5;
 }
 
@@ -75,7 +79,11 @@
 }
 /*MARGINS & PADDING END*/
 
-.element-tag {
+.danger {
+	color: red;
+}
+
+.component-label {
 	font-size: 10px;
 	position: absolute;
 	padding: 2.5px;
@@ -84,13 +92,37 @@
 	background-color: lightgray;
 }
 
+.outline {
+	background-color: transparent;
+}
+
+.component-label.outline.primary-color {
+	border: 1px solid var(--chalk-yellow);
+	color: var(--chalk-yellow);
+}
+
+.component-label.outline.secondary-color {
+	border: 1px solid var(--chalk-lightblue);
+	color: var(--chalk-lightblue);
+}
+
+.component-label.outline.tertiary-color {
+	border: 1px solid var(--chalk-lightgreen);
+	color: var(--chalk-lightgreen);
+}
+
+.component-label.outline.quaternary-color {
+	border: 1px solid var(--chalk-salmon);
+	color: var(--chalk-salmon);
+}
+
 .play-button {
 	font-size: 50px;
 }
 
 .full-height-bg img {
 	position: absolute;
-	height: 100vh;
+	height: 150%;
 	z-index: -1;
 	top: 0;
 	left: 0;
@@ -98,7 +130,7 @@
 
 /*blackboard theme colors*/
 /*
-.element-tag { }
+.component-label { }
 .play-button { }
 .field-term { color: var(--chalk-yellow) }
 .field-examples { color: var(--chalk-lightblue) }
@@ -113,11 +145,15 @@
 
 /*uncomment below for wire-frames*/
 /*WIREFRAMES START*/
-/*
+
 .anki-card-audio { border: 1px solid red }
 .card-element { border: 1px solid blue }
 .card-element-line { border: 1px solid purple }
 .anki-card-image { border: 1px solid green }
 .card-element-span { border: 1px solid orange }
-*/
+
 /*WIREFRAMES END*/
+
+html {
+	color: white; /*todo: turn off for deployment (TESTING ONLY)*/
+}

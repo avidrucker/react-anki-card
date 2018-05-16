@@ -2,27 +2,30 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import CARDS from './sample_toki_pona.json';
+import CARDS from './sample_cards.json';
 import AnkiCard from './AnkiCard';
 //import {LangContext} from './Components/lang-context';
 //import {ImmersionContext} from './Components/immersion-context';
+//import ThemeContext} from './Components/theme-context';
 import {LabelContext} from './Components/label-context';
 import {ExportContext} from './Components/export-context';
+import {ThemeContext} from './Components/theme-context';
 
 const CARD_INDEX = 2; //TEST: 0=="ali", 1=="ijo", 2=="ilo"
-const TYPE_INDEX = 1; //TEST: 0=="look", 1=="hear", 2=="readLinjaPona",
-//3=="readTranslit", 4=="recall", 5=="writeDictation", 6=="readSign", 7=="makeSign", 8=="describePicture"
+const TYPE_INDEX = 1; //TEST: 0=="look", 1=="hear", 2=="readELLinjaPona",
+// 3=="readTranslit", 4=="recall", 5=="writeDictation", 6=="readSign", 7=="makeSign", 8=="describePicture"
 //const PROMPT_INDEX = 0; //0==english, 1==toki pona //todo: delegate this to "immersion mode"
+const LANG_INDEX = 0; //TEST 0=="Japanese", 1=="toki pona", 2=="Hebrew"
 
 const LABEL_ON = true; //formerly SHOW_ELEMENT_NAME
 const IS_FOR_EXPORT = false; //formerly EXPORT_MODE
 
-const CARD_TYPES = ["look","hear","readLinjaPona", "readTranslit",
+const CARD_TYPES = ["look","hear","readELLinjaPona", "readTranslit",
     "recall","writeDictation","readSign","makeSign","describePicture"];
 const CARD_TYPE = CARD_TYPES[TYPE_INDEX];
 
 const THEME_INDEX = 2;
-const THEMES = ["zen-light","black-board","zen-burn","index-card",'zen-dark'];
+const THEMES = ["zen-light","zen-burn","black-board","index-card",'zen-dark'];
 const THEME = THEMES[THEME_INDEX];
 
 class App extends Component {
@@ -31,7 +34,9 @@ class App extends Component {
       <div className="App">
         <ExportContext.Provider value={IS_FOR_EXPORT}>
     			<LabelContext.Provider value={LABEL_ON}>
-    			  <Content />
+            <ThemeContext.Provider value={THEME}>
+              <Content />
+            </ThemeContext.Provider>
     			</LabelContext.Provider>
         </ExportContext.Provider>
       </div>
@@ -41,14 +46,12 @@ class App extends Component {
 
 function Content() {
 	return (
-		<div>
-			<AnkiCard
-					card={CARDS.tokiPona[CARD_INDEX]}
-					cardLang="toki pona"
-					cardType={CARD_TYPE}
-					theme = {THEME}
-				/>
-		</div>
+		<AnkiCard
+			card={CARDS.tokiPona[CARD_INDEX]}
+			cardLang="toki pona"
+			cardType={CARD_TYPE}
+			theme = {THEME}
+		/>
 	);
 }
 

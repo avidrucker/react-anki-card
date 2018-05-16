@@ -7,14 +7,14 @@ import BlockLabel from './BlockLabel';
 	dynamic/conditional (composition as child only).
 	Can be multi-line.
 */
-const BlockStaticElement = ({additionalClass, importance, hintedOut, labelOn, labelName, size, text}) => (
+const BlockStaticElement = ({additionalClass, importance, hintedOut, labelOn, labelName, size, text, theme}) => (
 	<Fragment>
 	{
 		!!text &&
 		<Fragment>
 		{
 			<div className="card-element">
-			{!!labelOn && <BlockLabel text={labelName} />}
+			{!!labelOn && <BlockLabel theme={theme} text={labelName} />}
 			<div className={`${size} ${importance} ${additionalClass}`}>
 				{text.split("\n").map(i => {
 					return (

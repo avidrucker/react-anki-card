@@ -3,19 +3,19 @@ import React from 'react';
 import BlockElement from './BlockElement';
 import {withLabel} from './label-context';
 import {forExport} from './export-context';
-const ExpLabeledBlockElement = forExport(withLabel(BlockElement));
+import {withTheme} from './theme-context';
+const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
 
-//todo: verify the correct text for "fieldName"
-/*generally the English translation of L2 term*/
-/* todo: add hintedOut option to StaticElementBlock*/
-const TranslationElement = ({field, importance}) => (
-	<ExpLabeledBlockElement
-		labelName="English Translation"
-		fieldName="translation"
-		size="regular"
-		additionalClass="field-translation"
-		importance={!importance ? "low" : importance}
+/* the English (L1) translation of L2 term*/
+const TranslationElement = ({additionalClass, field, size, importance, hintedOut}) => (
+	<ExtendedBlockElement
+		additionalClass={`field-translation ${additionalClass}`}
 		field={field}
+		fieldName="translation"
+		hintedOut={hintedOut}
+		importance={!importance ? "low" : importance}
+		labelName="English Translation"
+		size={!size ? "regular" : size}
 	/>
 );
 

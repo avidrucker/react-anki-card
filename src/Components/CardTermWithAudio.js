@@ -6,30 +6,23 @@ import SpanElement from './SpanElement';
 import SpanAudio from './SpanAudio';
 
 /*high level block component that combines TERM and AUDIO fields into one block */
-const CardTermWithAudio = ({labelName, importance, field, isForExport, labelOn}) => (
+const CardTermWithAudio = ({importance, field, size, isForExport, labelOn}) => (
 	<div className="card-element">
-		{labelOn && <BlockLabel text={labelName} />}
-		<div className="card-element-line">
+		{labelOn && <BlockLabel text="Term & Audio" />}
+		<div className={`field-term card-element-line ${importance} ${size}`}>
 			{
 				!isForExport &&
 				<Fragment>
-					<SpanAudio
-						name="L2 term audio"
-						additionalClass="field-term"
-						field="▸"
-					/>
+					<SpanAudio field="▸" />
 					<SpanElement
 						fieldName="L2 term"
-						size="big"
-						additionalClass="field-term"
-						importance={!importance ? "high" : importance}
 						field={field}
 					/>
 				</Fragment>
 			}
 			{
 				!!isForExport &&
-				<Fragment>{`{{termAudio}} {{term}}`}</Fragment>
+				<span>{`{{termAudio}} {{term}}`}</span>
 			}
 		</div>
 	</div>
