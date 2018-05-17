@@ -1,7 +1,5 @@
 import React, {Fragment} from 'react';
 
-import BlockLabel from './BlockLabel';
-
 /*general image, this can represent a text image, photo or picture
 It is NOT meant for use as the background wallpaper*/
 /*todo: implement SVG linja pona, SVG fontawesome*/
@@ -22,7 +20,7 @@ const SpanImage = ({additionalClass, imgAlt, fieldName, resource}) => {
 			 	key={image+400}
 				src={require(`../Images/${image}`)}
 				alt={imgAlt+image /*todo: change this!*/}
-				className={`${additionalClass} anki-card-image img-responsive`}
+				className={`${additionalClass} img-responsive`}
 			/>
 	  });
 	}

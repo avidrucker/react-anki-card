@@ -8,12 +8,12 @@ import React, {Fragment} from 'react';
 */
 //todo: rename to ElementSpan
 //todo: remove conditional "export_mode" w/ single switch to single `{{${field}}}` DONE
-const SpanElement = ({field, additionalClass, hintedOut}) => (
+const SpanElement = ({field, hintedOut}) => (
 	<Fragment>
 		{field.split("\n").map(i => {
 			return (
 				<span
-					className={`card-element-span ${additionalClass}`}
+					className={`card-element-span`}
 					key={i+100}
 				>
 					{!hintedOut && i}

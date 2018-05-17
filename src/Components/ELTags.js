@@ -1,14 +1,13 @@
 import React from 'react';
 
 import BlockElement from './BlockElement';
-import {withLabel} from './label-context';
-import {forExport} from './export-context';
-import {withTheme} from './theme-context';
+import {withLabel} from '../Contexts/label-context';
+import {forExport} from '../Contexts/export-context';
+import {withTheme} from '../Contexts/theme-context';
 const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
-
+ 
 /*use this component to mark element blocks (primarily for testing) */
-const BlockTag = ({field}) => (
-  !!field &&
+const ELTags = ({additionalClass, field, hintedOut, importance, size}) => (
   <ExtendedBlockElement
     additionalClass="card-tags"
     fieldName="Tags"
@@ -20,4 +19,4 @@ const BlockTag = ({field}) => (
   />
 );
 
-export default BlockTag;
+export default ELTags;

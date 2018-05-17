@@ -1,14 +1,15 @@
 import React from 'react';
 
 import BlockElement from './BlockElement';
-import {withLabel} from './label-context';
-import {forExport} from './export-context';
-import {withTheme} from './theme-context';
+import {withLabel} from '../Contexts/label-context';
+import {forExport} from '../Contexts/export-context';
+import {withTheme} from '../Contexts/theme-context';
 const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
 
-const ELPrompt = ({additionalClass, importance, size, text}) => (
+const ELPrompt = ({colorRank, importance, size, text}) => (
 	<ExtendedBlockElement
-		additionalClass={`text-prompt ${additionalClass}`}
+		elClass={`el-front-prompt`}
+		colorRank={colorRank}
 		labelName="Card Prompt"
 		size={!size ? "small" : size}
 		fieldName="text-prompt"

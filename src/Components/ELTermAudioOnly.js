@@ -1,23 +1,25 @@
 import React, { Fragment } from 'react';
 
 import SpanAudio from './SpanAudio';
-import BlockLabel from './BlockLabel';
+import ELLabel from './ELLabel';
+import {withTheme} from '../Contexts/theme-context';
+const ThemedLabel = withTheme(ELLabel);
 
 /*high level block component that correlates directly with the audio field */
 /*todo: enable multi-audio preview VERY LOW PRIORITY */
-const BlockTermAudio = ({additionalClass, isForExport, labelOn, theme}) => {
+const ELTermAudioOnly = ({colorRank, elClass, isForExport, labelOn, theme}) => {
 	const themeStyle = (theme === "black-board") ? "pastel-chalk-text" : "";
 	return (
-		<div className={`card-element card-term-audio ${additionalClass} ${themeStyle}`}>
+		<div className={`card-element ${elClass} ${themeStyle} ${colorRank}`}>
 			{
 				!!labelOn &&
-				<BlockLabel
+				<ThemedLabel
 					theme={theme}
+					colorRank={colorRank}
 					text="Term Audio"
-					additionalClass={additionalClass} /*used for primary-color*/
 				/>
 			}
-			<div className={`card-element-line anki-card-audio`}>
+			<div className={`card-element-line`}>
 				{
 					!isForExport &&
 					<SpanAudio name="L2 term audio" field="▸" />
@@ -31,4 +33,4 @@ const BlockTermAudio = ({additionalClass, isForExport, labelOn, theme}) => {
 	);
 };
 
-export default BlockTermAudio;
+export default ELTermAudioOnly;

@@ -1,15 +1,16 @@
 import React, { Fragment } from 'react';
 
 import BlockElement from './BlockElement';
-import {withLabel} from './label-context';
-import {forExport} from './export-context';
-import {withTheme} from './theme-context';
+import {withLabel} from '../Contexts/label-context';
+import {forExport} from '../Contexts/export-context';
+import {withTheme} from '../Contexts/theme-context';
 const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
 
 /*high level block component that correlates directly with term field */
-const CardTermOnly = ({additionalClass, field, size, importance, hintedOut}) => (
+const ELTermOnly = ({colorRank, field, hintedOut, importance, size}) => (
 	<ExtendedBlockElement
-		additionalClass={additionalClass}
+		colorRank={colorRank}
+		elClass={`card-term-only`}
 		field={field}
 		fieldName="L2 term"
 		hintedOut={hintedOut}
@@ -19,4 +20,4 @@ const CardTermOnly = ({additionalClass, field, size, importance, hintedOut}) => 
 	/>
 );
 
-export default CardTermOnly;
+export default ELTermOnly;

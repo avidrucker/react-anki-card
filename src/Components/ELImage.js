@@ -1,9 +1,9 @@
 import React from 'react';
 
 import BlockImage from './BlockImage';
-import {withLabel} from './label-context';
-import {forExport} from './export-context';
-import {withTheme} from './theme-context';
+import {withLabel} from '../Contexts/label-context';
+import {forExport} from '../Contexts/export-context';
+import {withTheme} from '../Contexts/theme-context';
 const ExtendedImage = forExport(withLabel(withTheme(BlockImage)));
 
 /* the English (L1) translation of L2 term*/

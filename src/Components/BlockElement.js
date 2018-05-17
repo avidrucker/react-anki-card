@@ -1,18 +1,26 @@
 import React, {Fragment} from 'react';
 
-import BlockLabel from './BlockLabel';
+import ELLabel from './ELLabel';
+import {withTheme} from '../Contexts/theme-context';
+const ThemedLabel = withTheme(ELLabel);
 
 /*"smart" block elements (composition as child only) which
 determine whether to render a label, what fields to used
 depending on the theme (ie. imageWhite or imageBlack fields),
 as well as whether to make child components hintedOut or isForExport*/
-const BlockElement = ({additionalClass, field, fieldName, importance,
+const BlockElement = ({ colorRank, elClass, field, fieldName, importance,
 	labelOn, theme, hintedOut, isForExport, labelName, size}) => {
-	const themeStyle = (theme === "black-board") ? "pastel-chalk-text" : "";
+	const themeColor = (theme === "black-board") ? "pastel-chalk-text" : "";
 
 	return(
-	<div className={`card-element ${size} ${importance} ${additionalClass} ${themeStyle}`}>
-		{!!labelOn && <BlockLabel theme={theme} text={labelName} />}
+	<div className={`card-element ${elClass} ${size} ${importance} ${themeColor} ${colorRank}`}>
+		{
+			!!labelOn &&
+			<ThemedLabel
+				text={labelName}
+				colorRank={colorRank}
+			/>
+		}
 		{
 			!isForExport &&
 			<Fragment>
@@ -20,8 +28,10 @@ const BlockElement = ({additionalClass, field, fieldName, importance,
 					field.split("\n").map(i => {
 						return (
 							<div className="card-element-line" key={i+200}>
-								{!hintedOut && i}
-								{!!hintedOut && `[...show ${fieldName}]`}
+								<span className="card-element-span">
+									{!hintedOut && i}
+									{!!hintedOut && `[...show ${fieldName}]`}
+								</span>
 							</div>
 							);
 						}
@@ -32,7 +42,9 @@ const BlockElement = ({additionalClass, field, fieldName, importance,
 		{
 			!!isForExport &&
 				<div className="card-element-line">
-					{`{{${fieldName}}}`}
+					<span className="card-element-span">
+						{`{{${fieldName}}}`}
+					</span>
 				</div>
 		}
 	</div>);

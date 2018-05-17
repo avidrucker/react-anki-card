@@ -1,16 +1,17 @@
 import React, {Fragment} from 'react';
 
 import BlockElement from './BlockElement';
-import {withLabel} from './label-context';
-import {forExport} from './export-context';
-import {withTheme} from './theme-context';
+import {withLabel} from '../Contexts/label-context';
+import {forExport} from '../Contexts/export-context';
+import {withTheme} from '../Contexts/theme-context';
 const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
 
 /*use this component to mark element blocks (primarily for testing) */
-const ELMnemonic = ({field}) => (
+const ELMnemonic = ({colorRank, field}) => (
   // labelName, size, isForExport
   <ExtendedBlockElement
-    additionalClass="card-mnemonic"
+    elClass="el-mnemonic"
+    colorRank={colorRank}
     fieldName="mnemonic"
     field={field}
     labelName="Mnemonic Device"

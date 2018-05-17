@@ -3,20 +3,24 @@ import React from 'react';
 import BlockAudio from './BlockAudio';
 import BlockElement from './BlockElement';
 import ELExampleImage from './ELExampleImage';
-import {withLabel} from './label-context';
-import {forExport} from './export-context';
-const ExpLabeledBlockAudio = forExport(withLabel(BlockAudio));
-const ExpLabeledBlockElement = forExport(withLabel(BlockElement));
+import {withLabel} from '../Contexts/label-context';
+import {forExport} from '../Contexts/export-context';
+import {withTheme} from '../Contexts/theme-context';
+const ExtendedBlockAudio = forExport(withLabel(withTheme(BlockAudio)));
+const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
 
 //todo: question: is labelOn needed here?
-const GroupExamples = ({audioField, exampleField, imageField, isForExport, translationField}) => (
+const GroupExamples = ({audioField, exampleField, imageField,
+		isForExport, translationField}) => (
 	<div className="field-examples">
-		<ExpLabeledBlockAudio
+		<ExtendedBlockAudio
+			colorRank="primary-color"
 			field={audioField}
 			fieldName="exampleSentenceAudio"
 			labelName="Example Audio"
 		/>
-		<ExpLabeledBlockElement
+		<ExtendedBlockElement
+			colorRank="secondary-color"
 			field={exampleField}
 			fieldName="exampleSentence"
 			importance="medium"
@@ -26,7 +30,7 @@ const GroupExamples = ({audioField, exampleField, imageField, isForExport, trans
 		<ELExampleImage
 			field={imageField}
 		/>
-		<ExpLabeledBlockElement
+		<ExtendedBlockElement
 			fieldName="exampleTranslation"
 			field={translationField}
 			hintedOut={false /*todo: change back to true*/}
