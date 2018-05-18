@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 /*use this component to mark element blocks */
 const ELLabel = ({colorRank, text, theme}) => {
-	const themeStyle = (theme === "black-board") ? "outline" : "";
+	const themeStyle = (theme === "black-board") ? "outline pastel-chalk-text" : "";
 
 	return (<Fragment>
 	{

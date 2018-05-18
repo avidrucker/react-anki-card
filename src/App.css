@@ -1,25 +1,32 @@
+/*https://en.wikipedia.org/wiki/Wikipedia:Zenburn*/
+
 :root {
 	--chalk-yellow: #FFD700;
 	--chalk-lightblue: #96CCFF;
 	--chalk-lightgreen: #9EEBCF;
 	--chalk-salmon: #cc9393;
+	--chalk-muted-white: #DDD;
+
+	--zen-bg: #3f3f3f; /*background*/
+	--zen-default: #DCDCCC; /*default text*/
+	--zen-bright-yellow: #EFEF8F; /*function*/
+	--zen-pale-yellow: #F0DFAF; /*conditional, keyword*/
+	--zen-muted-green: #7F9F7F; /*comment*/
+	--zen-cyan: #8CD0D3; /*number*/
+	--zen-salmon: #DCA3A3; /*boolean, character*/
 }
 
-.primary-color.pastel-chalk-text {
-	color: var(--chalk-yellow) /*todo: implement theme toggling*/
-}
+.primary-color.pastel-chalk-text { color: var(--chalk-yellow) }
+.primary-color.zen-text {	color: var(--zen-bright-yellow) }
 
-.secondary-color.pastel-chalk-text {
-	color: var(--chalk-lightblue)
-}
+.secondary-color.pastel-chalk-text { color: var(--chalk-lightblue) }
+.secondary-color.zen-text {	color: var(--zen-cyan) }
 
-.tertiary-color.pastel-chalk-text {
-	color: var(--chalk-lightgreen)
-}
+.tertiary-color.pastel-chalk-text { color: var(--chalk-lightgreen) }
+.tertiary-color.zen-text { color: var(--zen-muted-green) }
 
-.quaternary-color.pastel-chalk-text {
-	color: var(--chalk-salmon);
-}
+.quaternary-color.pastel-chalk-text {	color: var(--chalk-salmon) }
+.quaternary-color.zen-text { color: var(--zen-salmon) }
 
 .anki-card-entire {
 	text-align: center;
@@ -32,7 +39,7 @@
 }
 
 .sign-language-image {
-	height: 12em;
+	height: 8em;
 }
 
 .linja-pona {
@@ -44,7 +51,7 @@
 }
 
 .example-image {
-	height: 8em;
+	height: 6em;
 }
 
 .big {
@@ -95,6 +102,11 @@
 .outline {
 	background-color: transparent;
 }
+
+.outline.pastel-chalk-text {
+	border: 1px solid var(--chalk-muted-white);
+}
+
 
 .component-label.outline.primary-color {
 	border: 1px solid var(--chalk-yellow);
@@ -169,5 +181,5 @@ html {
 }
 
 .default-text.pastel-chalk-text {
-	color: #DDD
+	color: var(--chalk-muted-white);
 }

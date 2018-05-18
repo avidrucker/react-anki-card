@@ -11,7 +11,7 @@ import {LabelContext} from './Contexts/label-context';
 import {ExportContext} from './Contexts/export-context';
 import {ThemeContext} from './Contexts/theme-context';
 
-const CARD_INDEX = 1; //TEST: 0=="ali", 1=="ijo", 2=="ilo"
+const CARD_INDEX = 2; //TEST: 0=="ali", 1=="ijo", 2=="ilo"
 const TYPE_INDEX = 1; //TEST: 0=="look", 1=="hear", 2=="readELLinjaPona",
 // 3=="readTranslit", 4=="recall", 5=="writeDictation", 6=="readSign", 7=="makeSign", 8=="describePicture"
 //const PROMPT_INDEX = 0; //0==english, 1==toki pona //todo: delegate this to "immersion mode"
