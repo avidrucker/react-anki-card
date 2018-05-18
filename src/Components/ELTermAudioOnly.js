@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import SpanAudio from './SpanAudio';
 import ELLabel from './ELLabel';
@@ -7,14 +7,13 @@ const ThemedLabel = withTheme(ELLabel);
 
 /*high level block component that correlates directly with the audio field */
 /*todo: enable multi-audio preview VERY LOW PRIORITY */
-const ELTermAudioOnly = ({colorRank, elClass, isForExport, labelOn, theme}) => {
-	const themeStyle = (theme === "black-board") ? "pastel-chalk-text" : "";
+const ELTermAudioOnly = ({colorRank, elClass, importance, isForExport, labelOn, size, theme}) => {
+	const themeColor = (theme === "black-board") ? "pastel-chalk-text" : "";
 	return (
-		<div className={`card-element ${elClass} ${themeStyle} ${colorRank}`}>
+		<div className={`card-element ${elClass} ${size} ${importance} ${themeColor} ${colorRank}`}>
 			{
 				!!labelOn &&
 				<ThemedLabel
-					theme={theme}
 					colorRank={colorRank}
 					text="Term Audio"
 				/>

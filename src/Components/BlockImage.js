@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
 import SpanImage from './SpanImage';
 import ELLabel from './ELLabel';
@@ -25,7 +25,9 @@ const BlockImage = ({additionalClass, field, fieldName, importance,
 		{
 			!!isForExport &&
 			<div className="card-element-line">
-				{`{{${fieldName}}}`}
+				<span className={`card-image ${additionalClass}`}>
+					{`{{${fieldName}}}`}
+				</span>
 			</div>
 		}
 	</div>

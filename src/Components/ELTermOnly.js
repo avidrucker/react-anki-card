@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import BlockElement from './BlockElement';
 import {withLabel} from '../Contexts/label-context';
@@ -7,7 +7,7 @@ import {withTheme} from '../Contexts/theme-context';
 const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
 
 /*high level block component that correlates directly with term field */
-const ELTermOnly = ({colorRank, field, hintedOut, importance, size}) => (
+const ELTermOnly = ({colorRank, elClass, field, hintedOut, importance, size}) => (
 	<ExtendedBlockElement
 		colorRank={colorRank}
 		elClass={`card-term-only`}

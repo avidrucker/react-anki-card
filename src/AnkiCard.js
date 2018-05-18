@@ -32,18 +32,18 @@ const MAKE_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.makeSign.L1;
 const MNEMONIC_PROMPT = PROMPTS.tokiPonaPrompts.mnemonic.L1;
 
 const ExtendedCategory = forExport(withLabel(withTheme(ELCategory)));
-const ExtendedELTermAudioOnly = forExport(withLabel(ELTermAudioOnly)); //todo: componentize this
+const ExtendedTermAudio = forExport(withLabel(withTheme(ELTermAudioOnly)));
 const ThemedBackground = withTheme(Background);
 
 class AnkiCard extends Component {
   render() {
 		const {card, cardLang, cardType, theme} = this.props;
-
+    const themeColor = (theme === "black-board") ? "pastel-chalk-text" : "";
     const TPlightDark = (theme === "black-board") ? card.TPlinjaPonaDark : card.TPlinjaPonaLight ;
     const TPlightDarkfield = (theme === "black-board") ? "linjaPonaDark" : "linjaPonaLight" ;
 
     return (
-			<div className="anki-card-entire">
+			<div className={`anki-card-entire ${themeColor} default-text`}>
 				{/*CARD FRONT*/}
 				<ExtendedCategory
 					cardLang={cardLang}
@@ -92,7 +92,7 @@ class AnkiCard extends Component {
               text={HEAR_PROMPT}
               colorRank="tertiary-color"
             />
-						<ExtendedELTermAudioOnly
+						<ExtendedTermAudio
               colorRank="primary-color"
             />
 					</Fragment>
@@ -101,7 +101,7 @@ class AnkiCard extends Component {
 					cardType === "writeDictation" &&
 					<Fragment>
 						<ELPrompt text={WRITE_PROMPT} />
-						<ExtendedELTermAudioOnly colorRank="primary-color" />
+						<ExtendedTermAudio colorRank="primary-color" />
 					</Fragment>
 				}
         {
@@ -176,7 +176,7 @@ class AnkiCard extends Component {
 				{
 					cardType === "readTranslit" &&
 					<Fragment>
-						<ExtendedELTermAudioOnly />
+						<ExtendedTermAudio />
 						<ELLinjaPona
               field={TPlightDark}
               fieldName={TPlightDarkfield}
@@ -230,8 +230,14 @@ class AnkiCard extends Component {
   					imageField={card.exampleImage}
   					translationField={card.exampleSentenceTrans}
   				/>
-          <ELMnemonic field={card.mnemonic} />
-          <ELTags field={card.Tags} />
+          <ELMnemonic
+            field={card.mnemonic}
+            colorRank="secondary-color"
+          />
+          <ELTags
+            field={card.Tags}
+            colorRank="tertiary-color"
+          />
           {
             theme === "black-board" &&
             <ThemedBackground

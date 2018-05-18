@@ -6,18 +6,16 @@ import {forExport} from '../Contexts/export-context';
 import {withTheme} from '../Contexts/theme-context';
 const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
 
-/*use this component to mark element blocks (primarily for testing) */
-const ELTags = ({colorRank, elClass, field, hintedOut, importance, size}) => (
+const ELExampleTranslation = ({colorRank, field, hintedOut, importance, size}) => (
   <ExtendedBlockElement
-    elClass={`el-tags`}
     colorRank={colorRank}
-    fieldName="Tags"
+    fieldName="exampleTranslation"
     field={field}
+    hintedOut={false /*todo: change back to true*/}
     importance="low"
-    hintedOut={false /*todo: (UXUI improvement) change this to true before production*/}
-    labelName="Tags"
+    labelName="Example Translation"
     size="small"
   />
 );
 
-export default ELTags;
+export default ELExampleTranslation;

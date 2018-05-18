@@ -7,15 +7,15 @@ import {withTheme} from '../Contexts/theme-context';
 const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
 
 /* the English (L1) translation of L2 term*/
-const ELTranslation = ({colorRank, field, hintedOut, importance, size}) => (
+const ELTranslation = ({colorRank, elClass, field, hintedOut, importance, size}) => (
 	<ExtendedBlockElement
+		colorRank={colorRank}
 		elClass="field-translation"
 		field={field}
 		fieldName="translation"
 		hintedOut={hintedOut}
 		importance={!importance ? "low" : importance}
 		labelName="English Translation"
-		colorRank={colorRank}
 		size={!size ? "regular" : size}
 	/>
 );

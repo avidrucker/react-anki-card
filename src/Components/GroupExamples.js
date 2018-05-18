@@ -3,6 +3,7 @@ import React from 'react';
 import BlockAudio from './BlockAudio';
 import BlockElement from './BlockElement';
 import ELExampleImage from './ELExampleImage';
+import ELExampleTranslation from './ELExampleTranslation';
 import {withLabel} from '../Contexts/label-context';
 import {forExport} from '../Contexts/export-context';
 import {withTheme} from '../Contexts/theme-context';
@@ -30,13 +31,9 @@ const GroupExamples = ({audioField, exampleField, imageField,
 		<ELExampleImage
 			field={imageField}
 		/>
-		<ExtendedBlockElement
-			fieldName="exampleTranslation"
+		<ELExampleTranslation
 			field={translationField}
-			hintedOut={false /*todo: change back to true*/}
-			importance="low"
-			labelName="Example Translation"
-			size="small"
+			colorRank="quaternary-color"
 		/>
 	</div>
 );

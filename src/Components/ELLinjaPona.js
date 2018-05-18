@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
 import BlockImage from './BlockImage';
 import {withLabel} from '../Contexts/label-context';
