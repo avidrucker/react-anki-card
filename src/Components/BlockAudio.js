@@ -8,10 +8,11 @@ const ThemedLabel = withTheme(ELLabel);
 /*use to show 1+ audio clips & their play buttons*/
 const BlockAudio = ({colorRank, elClass, field, fieldName, importance,
 	isForExport, labelName, labelOn, size, theme}) => {
-	const themeColor = (theme === "black-board") ? "pastel-chalk-text" : "";
+		const elStyle = (theme === "black-board") ? "pastel-chalk-text" : (theme === "zenburn" ? "zenburn-text" : "");
+		const spanStyle = (theme === "zenburn") ? "zenburn-bg2" : "";
 
 	return (
-		<div className={`card-element ${elClass} ${size} ${importance} ${themeColor} ${colorRank}`}>
+		<div className={`card-element ${elStyle} ${size} ${importance} ${colorRank}`}>
 			{
 				!!labelOn &&
 				<ThemedLabel
@@ -23,6 +24,7 @@ const BlockAudio = ({colorRank, elClass, field, fieldName, importance,
 				{!isForExport && field.split("\n").map(i => {
 					return (
 					<SpanAudio
+						spanStyle={spanStyle}
 						key={i}
 						field="▸"
 					/>

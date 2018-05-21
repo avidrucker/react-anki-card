@@ -8,7 +8,7 @@ const ExtendedImage = forExport(withLabel(withTheme(BlockImage)));
 
 const ELExampleImage = ({colorRank, field}) => (
 	<ExtendedImage
-		additionalClass="example-image"
+		imgClass="example-image"
 		colorRank={colorRank}
 		field={field}
 		fieldName="exampleImage"

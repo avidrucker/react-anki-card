@@ -11,9 +11,11 @@ this may be substituted with a country flag or other visual indicator such as a 
 class ELCategory extends Component {
 	render() {
 		const { theme, cardLang, cardType, colorRank, labelOn, isForExport, size, importance } = this.props;
-		const themeColor = (theme === "black-board") ? "pastel-chalk-text" : "";
+		const elStyle = (theme === "black-board") ? "pastel-chalk-text" : (theme === "zenburn" ? "zenburn-text" : "");
+		const spanStyle = (theme === "zenburn") ? "zenburn-bg2" : "";
+
 		return (
-			<div className={`card-element card-category ${colorRank} ${themeColor} ${importance} ${size}`}>
+			<div className={`card-element card-category ${elStyle} ${colorRank} ${importance} ${size}`}>
 				{
 					!!labelOn &&
 					<ThemedLabel
@@ -26,6 +28,7 @@ class ELCategory extends Component {
 						!isForExport &&
 						<Fragment>
 							<SpanElement
+								spanStyle={spanStyle}
 								field={`${cardLang}::${cardType}`}
 							/>
 						</Fragment>

@@ -9,7 +9,7 @@ const ThemedLabel = withTheme(ELLabel);
 determine whether to render a label, what fields to used
 depending on the theme (ie. imageWhite or imageBlack fields),
 as well as whether to make child components hintedOut or isForExport*/
-const BlockImage = ({additionalClass, field, fieldName, importance,
+const BlockImage = ({imgClass, field, fieldName, importance,
 	labelOn, theme, hintedOut, isForExport, labelName, size}) => (
 	<div className={`card-element ${size} ${importance}`}>
 		{
@@ -22,7 +22,7 @@ const BlockImage = ({additionalClass, field, fieldName, importance,
 			!isForExport &&
       <div className="card-element-line">
   			<SpanImage
-          additionalClass={`card-image ${additionalClass}`}
+          imgClass={imgClass}
           labelName={labelName}
           fieldName={fieldName}
           resource={field}
@@ -32,7 +32,7 @@ const BlockImage = ({additionalClass, field, fieldName, importance,
 		{
 			!!isForExport &&
 			<div className="card-element-line">
-				<span className={`card-image ${additionalClass}`}>
+				<span className={imgClass}>
 					{`{{${fieldName}}}`}
 				</span>
 			</div>

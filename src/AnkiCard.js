@@ -22,7 +22,7 @@ import PROMPTS from './toki_pona_prompts.json';
 import blackboard1 from './board1.jpg';
 import blackboard2 from './board2.jpg';
 
-const READ_PROMPT = PROMPTS.tokiPonaPrompts.readELLinjaPona.L1;
+const READ_PROMPT = PROMPTS.tokiPonaPrompts.readLP.L1;
 const READ_PROMPT2 = PROMPTS.tokiPonaPrompts.readTranslit.L1;
 const HEAR_PROMPT = PROMPTS.tokiPonaPrompts.hear.L1;
 const WRITE_PROMPT = PROMPTS.tokiPonaPrompts.transcribe.L1;
@@ -38,12 +38,13 @@ const ThemedBackground = withTheme(Background);
 class AnkiCard extends Component {
   render() {
 		const {card, cardLang, cardType, theme} = this.props;
-    const themeColor = (theme === "black-board") ? "pastel-chalk-text" : "";
+    const themeStyle = (theme === "black-board") ? "pastel-chalk-text" : (theme === "zenburn" ? "zenburn-bg zenburn-text" : "");
+    //const themeStyle = (theme === "black-board") ? "blackboard-bg pastel-chalk-text" : (theme === "zenburn" ? "zenburn-bg zenburn-text" : "");
     const TPlightDark = (theme === "black-board") ? card.TPlinjaPonaDark : card.TPlinjaPonaLight ;
     const TPlightDarkfield = (theme === "black-board") ? "linjaPonaDark" : "linjaPonaLight" ;
 
     return (
-			<div className={`anki-card-entire ${themeColor} default-text`}>
+			<div className={`anki-card-entire ${themeStyle} default-text`}>
 				{/*CARD FRONT*/}
 				<ExtendedCategory
 					cardLang={cardLang}
@@ -59,7 +60,7 @@ class AnkiCard extends Component {
           <ELTranslation field={card.engTrans} />
 				}
 				{
-					cardType === "readELLinjaPona" &&
+					cardType === "readLP" &&
 					<Fragment>
 						<ELPrompt
               text={READ_PROMPT}
@@ -123,7 +124,10 @@ class AnkiCard extends Component {
           cardType === "makeSign" &&
           <Fragment>
             <ELPrompt text={MAKE_SIGN_PROMPT} />
-            <ELLinjaPona field={TPlightDark} fieldName={TPlightDarkfield} />
+            <ELLinjaPona
+              field={TPlightDark}
+              fieldName={TPlightDarkfield}
+            />
           </Fragment>
         }
 				{/*CARD DIVIDER*/}
@@ -146,7 +150,7 @@ class AnkiCard extends Component {
 					</Fragment>
 				}
 				{
-					cardType === "readELLinjaPona" &&
+					cardType === "readLP" &&
 					<Fragment>
 						<ELTermWithAudio field={card.term} />
 						<ELImage field={card.image} />
@@ -241,7 +245,6 @@ class AnkiCard extends Component {
           {
             theme === "black-board" &&
             <ThemedBackground
-              additionalClass="blackboard-bg-fallback"
               imgAlt="blackboard image"
               resourceImg={blackboard1}
               theme={theme}
@@ -254,3 +257,9 @@ class AnkiCard extends Component {
 }
 
 export default AnkiCard;
+
+/*
+
+
+
+*/

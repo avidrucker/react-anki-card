@@ -7,10 +7,11 @@ const ThemedLabel = withTheme(ELLabel);
 
 /*high level block component that correlates directly with the audio field */
 /*todo: enable multi-audio preview VERY LOW PRIORITY */
-const ELTermAudioOnly = ({colorRank, elClass, importance, isForExport, labelOn, size, theme}) => {
-	const themeColor = (theme === "black-board") ? "pastel-chalk-text" : "";
+const ELTermAudioOnly = ({colorRank, importance, isForExport, labelOn, size, theme}) => {
+	const elStyle = (theme === "black-board") ? "pastel-chalk-text" : (theme === "zenburn" ? "zenburn-text" : "");
+	const spanStyle = (theme === "zenburn") ? "zenburn-bg2" : "";
 	return (
-		<div className={`card-element ${elClass} ${size} ${importance} ${themeColor} ${colorRank}`}>
+		<div className={`card-element ${elStyle} ${size} ${importance} ${colorRank}`}>
 			{
 				!!labelOn &&
 				<ThemedLabel
@@ -21,11 +22,17 @@ const ELTermAudioOnly = ({colorRank, elClass, importance, isForExport, labelOn, 
 			<div className={`card-element-line`}>
 				{
 					!isForExport &&
-					<SpanAudio name="L2 term audio" field="▸" />
+					<SpanAudio
+						name="L2 term audio"
+						field="▸"
+						spanStyle={spanStyle}
+					/>
 				}
 				{
 					!!isForExport &&
-					<span className="card-element-span">{`{{termAudio}}`}</span>
+					<span className={`card-element-span ${spanStyle}`}>
+						{`{{termAudio}}`}
+					</span>
 				}
 			</div>
 		</div>

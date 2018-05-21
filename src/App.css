@@ -1,37 +1,57 @@
 /*https://en.wikipedia.org/wiki/Wikipedia:Zenburn*/
 
 :root {
+	--blackboard-bg-fallback: #333; /*todo: adjust this to be blurred avg of blackboard img*/
 	--chalk-yellow: #FFD700;
 	--chalk-lightblue: #96CCFF;
 	--chalk-lightgreen: #9EEBCF;
 	--chalk-salmon: #cc9393;
 	--chalk-muted-white: #DDD;
 
-	--zen-bg: #3f3f3f; /*background*/
-	--zen-default: #DCDCCC; /*default text*/
-	--zen-bright-yellow: #EFEF8F; /*function*/
-	--zen-pale-yellow: #F0DFAF; /*conditional, keyword*/
-	--zen-muted-green: #7F9F7F; /*comment*/
-	--zen-cyan: #8CD0D3; /*number*/
-	--zen-salmon: #DCA3A3; /*boolean, character*/
+	--zenburn-bg: #3f3f3f; /*background*/
+	--zenburn-bg2: #242424; /*PMenu select???*/
+	--zenburn-default: #DCDCCC; /*default text*/
+	--zenburn-bright-yellow: #EFEF8F; /*function*/
+	--zenburn-pale-yellow: #F0DFAF; /*conditional, keyword*/
+	--zenburn-muted-green: #7F9F7F; /*comment*/
+	--zenburn-cyan: #8CD0D3; /*number*/
+	--zenburn-salmon: #DCA3A3; /*boolean, character*/
+
+	/*https://www.designpieces.com/palette/game-boy-original-color-palette-hex-and-rgb/*/
+	--gameboy-darkest:#0f380f; /*Darkest Green*/
+	--gameboy-dark: #306230; /*Dark Green*/
+	--gameboy-light: #8bac0f; /*Light Green*/
+	--gameboy-lightest: #9bbc0f; /*Lightest Green*/
+
+	/*https://www.schemecolor.com/matrix-code-green.php*/
+	--matrix-vampire-black: #0D0208;
+	--matrix-dark-green: #003B00;
+	--matrix-islamic-green: #008F11;
+	--matrix-malachite: #00FF41;
+	--matrix-bg: var(--matrix-vampire-black);
+	--matrix-text: var(--matrix-islamic-green); /*todo: double-check how this looks & see online ref*/
+}
+
+html {
+	/*color: white;*/ /*todo: turn off for deployment (TESTING ONLY)*/
+	font-size: 2em; /*desktop testing recommended is 2.5em*/
 }
 
 .primary-color.pastel-chalk-text { color: var(--chalk-yellow) }
-.primary-color.zen-text {	color: var(--zen-bright-yellow) }
+.primary-color.zenburn-text {	color: var(--zenburn-bright-yellow) }
 
 .secondary-color.pastel-chalk-text { color: var(--chalk-lightblue) }
-.secondary-color.zen-text {	color: var(--zen-cyan) }
+.secondary-color.zenburn-text {	color: var(--zenburn-cyan) }
 
 .tertiary-color.pastel-chalk-text { color: var(--chalk-lightgreen) }
-.tertiary-color.zen-text { color: var(--zen-muted-green) }
+.tertiary-color.zenburn-text { color: var(--zenburn-muted-green) }
 
 .quaternary-color.pastel-chalk-text {	color: var(--chalk-salmon) }
-.quaternary-color.zen-text { color: var(--zen-salmon) }
+.quaternary-color.zenburn-text { color: var(--zenburn-salmon) }
 
 .anki-card-entire {
 	text-align: center;
-	margin: 1em;
-	font-size: 1.5em;
+	padding: 1em;
 }
 
 .anki-card-image {
@@ -46,7 +66,7 @@
 	height: 4em;
 }
 
-.card-image {
+.field-image {
 	height: 4em;
 }
 
@@ -91,7 +111,7 @@
 }
 
 .component-label {
-	font-size: 10px;
+	font-size: 0.5rem;
 	position: absolute;
 	padding: 2.5px;
 	left: 5px;
@@ -103,30 +123,23 @@
 	background-color: transparent;
 }
 
+.zenburn-bg2 {
+	background-color: var(--zenburn-bg2);
+}
+
 .outline.pastel-chalk-text {
 	border: 1px solid var(--chalk-muted-white);
 }
 
 
-.component-label.outline.primary-color {
-	border: 1px solid var(--chalk-yellow);
-	color: var(--chalk-yellow);
-}
-
-.component-label.outline.secondary-color {
-	border: 1px solid var(--chalk-lightblue);
-	color: var(--chalk-lightblue);
-}
-
-.component-label.outline.tertiary-color {
-	border: 1px solid var(--chalk-lightgreen);
-	color: var(--chalk-lightgreen);
-}
-
-.component-label.outline.quaternary-color {
-	border: 1px solid var(--chalk-salmon);
-	color: var(--chalk-salmon);
-}
+.component-label.outline.primary-color.pastel-chalk-text  { border: 1px solid var(--chalk-yellow) }
+.component-label.outline.primary-color.zenburn-text  { border: 1px solid var(--zenburn-bright-yellow) }
+.component-label.outline.secondary-color.pastel-chalk-text  { border: 1px solid var(--chalk-lightblue) }
+.component-label.outline.secondary-color.zenburn-text  { border: 1px solid var(--zenburn-cyan) }
+.component-label.outline.tertiary-color.pastel-chalk-text  { border: 1px solid var(--chalk-lightgreen) }
+.component-label.outline.tertiary-color.zenburn-text  { border: 1px solid var(--zenburn-muted-green) }
+.component-label.outline.quaternary-color.pastel-chalk-text  { border: 1px solid var(--chalk-salmon) }
+.component-label.outline.quaternary-color.zenburn-text  { border: 1px solid var(--zenburn-salmon) }
 
 .play-button {
 	font-size: 50px;
@@ -167,19 +180,18 @@
 
 /*uncomment below for wire-frames*/
 /*WIREFRAMES START*/
-
+/*
 .anki-card-audio { border: 1px solid red }
 .card-element { border: 1px solid blue }
 .card-element-line { border: 1px solid purple }
 .anki-card-image { border: 1px solid green }
 .card-element-span { border: 1px solid orange }
-
+*/
 /*WIREFRAMES END*/
 
-html {
-	/*color: white;*/ /*todo: turn off for deployment (TESTING ONLY)*/
-}
+.default-text.pastel-chalk-text { color: var(--chalk-muted-white) }
+.default-text.zenburn-text { color: var(--zenburn-default) }
 
-.default-text.pastel-chalk-text {
-	color: var(--chalk-muted-white);
-}
+
+.zenburn-bg { background-color: var(--zenburn-bg) }
+.blackboard-bg { background-color: var(--blackboard-bg-fallback) }
