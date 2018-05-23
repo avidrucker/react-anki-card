@@ -20,7 +20,7 @@ const GroupA11yImage = ({imgClass, imageField, imageLabelName,
       />
       <ExtDivElement
         colorRank="secondary-color"
-    		labelName={imageLabelName + " A11y Text"}
+    		labelName={imageLabelName + " A11y"}
     		size="small"
     		elClass="text-a11y"
     		importance="low"

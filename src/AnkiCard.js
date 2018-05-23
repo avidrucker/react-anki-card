@@ -247,21 +247,21 @@ class AnkiCard extends Component {
 					cardType === "makeSign" &&
 					<Fragment>
             <GroupA11yImage
-              imageAddClass="sign-language-image"
+              imgClass="sign-language-image"
               imageLabelName="Sign"
-              imageFieldName="signImage"
+              imageFieldName="TPsignImage"
               imageField={card.TPsignImage}
               captionText={card.TPsignDescription}
               textFieldName="signDescription"
             />
             <ExtTermWithAudio
-              colorRank="secondary-color"
+              colorRank="primary-color"
               field={card.term}
             />
 						<ELImage field={card.image} />
 						<ELTranslation
+              colorRank="secondary-color"
 							field={card.engTrans}
-              hintedOut={true}
 						/>
 					</Fragment>
 				}

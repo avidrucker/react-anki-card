@@ -13,7 +13,7 @@ import {ExportContext} from './Contexts/export-context';
 import {ThemeContext} from './Contexts/theme-context';
 
 const CARD_INDEX = 2; //TEST: 0=="ali", 1=="ijo", 2=="ilo"
-const TYPE_INDEX = 7;
+const TYPE_INDEX = 0;
 /*TEST: 0=="look", 1=="hear", 2=="readLP",3=="readTranslit",
 4=="recall", 5=="writeDictation", 6=="readSign", 7=="makeSign",
 8=="describePicture", 9=="mnemonic"*/

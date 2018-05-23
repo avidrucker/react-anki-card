@@ -9,10 +9,10 @@ const ExtImage = forExport(withLabel(withTheme(DivImage)));
 /*todo: refactor to handle text first, then iamge as backup*/
 const ELLinjaPona = ({field, fieldName}) => (
 	<ExtImage
+		field={field}
+		fieldName={fieldName}
 		imgClass={`linja-pona`}
 		labelName="linja pona"
-		fieldName={fieldName}
-		resource={field}
 	/>
 );
 
