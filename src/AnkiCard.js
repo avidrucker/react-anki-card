@@ -11,7 +11,7 @@ import ELPrompt from './Components/ELPrompt';
 import ELLinjaPona from './Components/ELLinjaPona';
 import ELImage from './Components/ELImage';
 import ELTermOnly from './Components/ELTermOnly';
-import GroupExamples from './Components/GroupExamples';
+import GroupEgs from './Components/GroupEgs';
 import Background from './Components/Background';
 import ELTermAudioOnly from './Components/ELTermAudioOnly';
 import GroupA11yImage from './Components/GroupA11yImage';
@@ -20,7 +20,6 @@ import ELMnemonic from './Components/ELMnemonic';
 
 import PROMPTS from './toki_pona_prompts.json';
 import blackboard1 from './board1.jpg';
-import blackboard2 from './board2.jpg';
 
 const READ_PROMPT = PROMPTS.tokiPonaPrompts.readLP.L1;
 const READ_PROMPT2 = PROMPTS.tokiPonaPrompts.readTranslit.L1;
@@ -31,22 +30,26 @@ const READ_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.readSign.L1;
 const MAKE_SIGN_PROMPT = PROMPTS.tokiPonaPrompts.makeSign.L1;
 const MNEMONIC_PROMPT = PROMPTS.tokiPonaPrompts.mnemonic.L1;
 
-const ExtendedCategory = forExport(withLabel(withTheme(ELCategory)));
-const ExtendedTermAudio = forExport(withLabel(withTheme(ELTermAudioOnly)));
+const ExtCategory = forExport(withLabel(withTheme(ELCategory)));
+const ExtTermAudio = forExport(withLabel(withTheme(ELTermAudioOnly)));
+const ExtTermWithAudio = forExport(withLabel(withTheme(ELTermWithAudio)));
+const ThemedGroupEgs = withTheme(GroupEgs);
 const ThemedBackground = withTheme(Background);
 
 class AnkiCard extends Component {
   render() {
 		const {card, cardLang, cardType, theme} = this.props;
-    const themeStyle = (theme === "black-board") ? "pastel-chalk-text" : (theme === "zenburn" ? "zenburn-bg zenburn-text" : "");
-    //const themeStyle = (theme === "black-board") ? "blackboard-bg pastel-chalk-text" : (theme === "zenburn" ? "zenburn-bg zenburn-text" : "");
-    const TPlightDark = (theme === "black-board") ? card.TPlinjaPonaDark : card.TPlinjaPonaLight ;
-    const TPlightDarkfield = (theme === "black-board") ? "linjaPonaDark" : "linjaPonaLight" ;
+    const themeStyle = (theme === "black-board") ? "chalk-text" :
+      (theme === "zenburn" ? "zenburn-bg zenburn-text" :
+        (theme === "zen-light" ? "" : ""));
+    //const themeStyle = (theme === "black-board") ? "blackboard-bg zenburn-text" : (theme === "zenburn" ? "zenburn-bg zenburn-text" : "");
+    const TPlightDark = (theme === "black-board" || theme === "zenburn") ? card.TPlinjaPonaDark : card.TPlinjaPonaLight ;
+    const TPlightDarkfield = (theme === "black-board" || theme === "zenburn") ? "linjaPonaDark" : "linjaPonaLight" ;
 
     return (
 			<div className={`anki-card-entire ${themeStyle} default-text`}>
 				{/*CARD FRONT*/}
-				<ExtendedCategory
+				<ExtCategory
 					cardLang={cardLang}
 					cardType={cardType}
           colorRank="quaternary-color"
@@ -57,14 +60,18 @@ class AnkiCard extends Component {
 				}
 				{
 					cardType === "recall" &&
-          <ELTranslation field={card.engTrans} />
+          <ELTranslation
+            colorRank="secondary-color"
+            field={card.engTrans}
+            size="regular"
+          />
 				}
 				{
-					cardType === "readLP" &&
+					cardType === "TPreadLP" &&
 					<Fragment>
 						<ELPrompt
+              colorRank="secondary-color"
               text={READ_PROMPT}
-              colorRank="tertiary-color"
             />
 						<ELLinjaPona
               field={TPlightDark}
@@ -73,16 +80,16 @@ class AnkiCard extends Component {
 					</Fragment>
 				}
 				{
-					cardType === "readTranslit" &&
+					cardType === "TPreadTranslit" &&
 					<Fragment>
 						<ELPrompt
+              colorRank="secondary-color"
               text={READ_PROMPT2}
-              colorRank="tertiary-color"
             />
 						<ELTermOnly
 							field={card.term}
-              size="big"
 							importance="high"
+              size="big"
 						/>
 					</Fragment>
 				}
@@ -90,29 +97,33 @@ class AnkiCard extends Component {
 					cardType === "hear" &&
 					<Fragment>
 						<ELPrompt
+              colorRank="secondary-color"
               text={HEAR_PROMPT}
-              colorRank="tertiary-color"
             />
-						<ExtendedTermAudio
-              colorRank="primary-color"
-            />
+						<ExtTermAudio colorRank="primary-color" />
 					</Fragment>
 				}
 				{
-					cardType === "writeDictation" &&
+					cardType === "TPwriteDictation" &&
 					<Fragment>
-						<ELPrompt text={WRITE_PROMPT} />
-						<ExtendedTermAudio colorRank="primary-color" />
+						<ELPrompt
+              colorRank="secondary-color"
+              text={WRITE_PROMPT}
+            />
+						<ExtTermAudio colorRank="primary-color" />
 					</Fragment>
 				}
         {
 					cardType === "readSign" &&
 					<Fragment>
-						<ELPrompt text={READ_SIGN_PROMPT} />
+						<ELPrompt
+              colorRank="secondary-color"
+              text={READ_SIGN_PROMPT}
+            />
             <GroupA11yImage
-              imageAddClass="sign-language-image"
+              imgClass="sign-language-image"
               imageLabelName="Sign"
-              imageFieldName="signImage"
+              imageFieldName="TPsignImage"
               imageField={card.TPsignImage}
               captionText={card.TPsignDescription}
               textFieldName="signDescription"
@@ -123,7 +134,10 @@ class AnkiCard extends Component {
         {
           cardType === "makeSign" &&
           <Fragment>
-            <ELPrompt text={MAKE_SIGN_PROMPT} />
+            <ELPrompt
+              text={MAKE_SIGN_PROMPT}
+              colorRank="secondary-color"
+            />
             <ELLinjaPona
               field={TPlightDark}
               fieldName={TPlightDarkfield}
@@ -136,29 +150,50 @@ class AnkiCard extends Component {
 				{
 					cardType === "look" &&
 					<Fragment>
-						<ELTermWithAudio field={card.term} />
-						<ELLinjaPona field={TPlightDark} fieldName={TPlightDarkfield} />
-						<ELTranslation field={card.engTrans}	/>
+						<ExtTermWithAudio
+              colorRank="primary-color"
+              field={card.term}
+            />
+						<ELLinjaPona
+              field={TPlightDark}
+              fieldName={TPlightDarkfield}
+            />
+						<ELTranslation
+              colorRank="secondary-color"
+              field={card.engTrans}
+            />
 					</Fragment>
 				}
 				{
 					cardType === "recall" &&
 					<Fragment>
-						<ELTermWithAudio field={card.term} />
-						<ELLinjaPona field={TPlightDark} fieldName={TPlightDarkfield} />
+						<ExtTermWithAudio
+              colorRank="primary-color"
+              field={card.term}
+            />
+						<ELLinjaPona
+              field={TPlightDark}
+              fieldName={TPlightDarkfield}
+            />
             <ELImage field={card.image} />
 					</Fragment>
 				}
 				{
-					cardType === "readLP" &&
+					cardType === "TPreadLP" &&
 					<Fragment>
-						<ELTermWithAudio field={card.term} />
+						<ExtTermWithAudio
+              colorRank="secondary-color"
+              field={card.term}
+            />
 						<ELImage field={card.image} />
-						<ELTranslation field={card.engTrans}	/>
+						<ELTranslation
+              colorRank="tertiary-color"
+              field={card.engTrans}
+            />
 					</Fragment>
 				}
 				{
-					(cardType === "hear" || cardType === "writeDictation") &&
+					(cardType === "hear" || cardType === "TPwriteDictation") &&
 					<Fragment>
 						<ELLinjaPona
               field={TPlightDark}
@@ -168,34 +203,35 @@ class AnkiCard extends Component {
 						<ELTermOnly
               colorRank="tertiary-color"
 							field={card.term}
-							hintedOut={false /*change this back to true*/}
 						/>
 						<ELTranslation
-							field={card.engTrans}
-							hintedOut={false}
               colorRank="secondary-color"
+							field={card.engTrans}
 						/>
 					</Fragment>
 				}
 				{
-					cardType === "readTranslit" &&
+					cardType === "TPreadTranslit" &&
 					<Fragment>
-						<ExtendedTermAudio />
+						<ExtTermAudio colorRank="primary-color" />
 						<ELLinjaPona
               field={TPlightDark}
               fieldName={TPlightDarkfield}
             />
 						<ELImage field={card.image} />
 						<ELTranslation
+              colorRank="secondary-color"
 							field={card.engTrans}
-							hintedOut={true}
 						/>
 					</Fragment>
 				}
         {
 					cardType === "readSign" &&
 					<Fragment>
-            <ELTermWithAudio field={card.term} />
+            <ExtTermWithAudio
+              colorRank="secondary-color"
+              field={card.term}
+            />
 						<ELLinjaPona
               field={TPlightDark}
               fieldName={TPlightDarkfield}
@@ -203,7 +239,7 @@ class AnkiCard extends Component {
 						<ELImage field={card.image} />
 						<ELTranslation
 							field={card.engTrans}
-							hintedOut={true}
+              colorRank="quaternary-color"
 						/>
 					</Fragment>
 				}
@@ -218,7 +254,10 @@ class AnkiCard extends Component {
               captionText={card.TPsignDescription}
               textFieldName="signDescription"
             />
-            <ELTermWithAudio field={card.term} />
+            <ExtTermWithAudio
+              colorRank="secondary-color"
+              field={card.term}
+            />
 						<ELImage field={card.image} />
 						<ELTranslation
 							field={card.engTrans}
@@ -228,7 +267,7 @@ class AnkiCard extends Component {
 				}
 				{/*for all cards, the following will render*/}
         <Fragment>
-  				<GroupExamples
+  				<ThemedGroupEgs
   					audioField={card.exampleSentenceAudio}
   					exampleField={card.exampleSentence}
   					imageField={card.exampleImage}

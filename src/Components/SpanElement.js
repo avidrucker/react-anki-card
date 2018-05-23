@@ -6,8 +6,7 @@ import React, {Fragment} from 'react';
 	and this is currently being handled outside of this span component, though this may change
 	depending on code organization/refactoring
 */
-//todo: rename to ElementSpan
-//todo: remove conditional "export_mode" w/ single switch to single `{{${field}}}` DONE
+//todo: convert to single span (remove fragment, split & map)
 const SpanElement = ({spanStyle, field, hintedOut}) => (
 	<Fragment>
 		{field.split("\n").map(i => {

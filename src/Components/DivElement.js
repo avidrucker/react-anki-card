@@ -8,13 +8,15 @@ const ThemedLabel = withTheme(ELLabel);
 determine whether to render a label, what fields to used
 depending on the theme (ie. imageWhite or imageBlack fields),
 as well as whether to make child components hintedOut or isForExport*/
-const BlockElement = ({ colorRank, field, fieldName, importance,
+const DivElement = ({ colorRank, elClass, field, fieldName, importance,
 	labelOn, theme, hintedOut, isForExport, labelName, size}) => {
-		const elStyle = (theme === "black-board") ? "pastel-chalk-text" : (theme === "zenburn" ? "zenburn-text" : "");
-		const spanStyle = (theme === "zenburn") ? "zenburn-bg2" : "";
+		const elStyle = (theme === "black-board") ? "chalk-text" :
+			(theme === "zenburn" ? "zenburn-text" : "");
+		const spanStyle = (theme === "zenburn") ? "zenburn-bg2" :
+			(theme === "zen-light" ? "transparency-enabled" : "");
 
 	return(
-	<div className={`card-element ${elStyle} ${size} ${importance} ${colorRank}`}>
+	<div className={`card-element ${elClass} ${elStyle} ${size} ${importance} ${colorRank}`}>
 		{
 			!!labelOn &&
 			<ThemedLabel
@@ -51,4 +53,4 @@ const BlockElement = ({ colorRank, field, fieldName, importance,
 	</div>);
 };
 
-export default BlockElement;
+export default DivElement;

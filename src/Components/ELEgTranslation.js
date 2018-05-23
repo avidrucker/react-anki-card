@@ -6,18 +6,16 @@ import {forExport} from '../Contexts/export-context';
 import {withTheme} from '../Contexts/theme-context';
 const ExtDivElement = forExport(withLabel(withTheme(DivElement)));
 
-/*use this component to mark element blocks (primarily for testing) */
-const ELTags = ({colorRank, field, hintedOut, importance, size}) => (
+const ELEgTranslation = ({colorRank, field, hintedOut, importance, size}) => (
   <ExtDivElement
-    elClass={`el-tags`}
     colorRank={colorRank}
-    fieldName="Tags"
+    fieldName="exampleTranslation"
     field={field}
-    importance={!importance ? "low" : importance}
     hintedOut={hintedOut}
-    labelName="Tags"
+    importance={!importance ? "low" : importance}
+    labelName="Example Translation"
     size={!size ? "small" : size}
   />
 );
 
-export default ELTags;
+export default ELEgTranslation;

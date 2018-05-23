@@ -1,14 +1,14 @@
 import React from 'react';
 
-import BlockImage from './BlockImage';
+import DivImage from './DivImage';
 import {withLabel} from '../Contexts/label-context';
 import {forExport} from '../Contexts/export-context';
 import {withTheme} from '../Contexts/theme-context';
-const ExtendedImage = forExport(withLabel(withTheme(BlockImage)));
+const ExtImage = forExport(withLabel(withTheme(DivImage)));
 
 /* the English (L1) translation of L2 term*/
 const ELImage = ({field, size, importance, hintedOut}) => (
-	<ExtendedImage
+	<ExtImage
 		imgClass="field-image"
 		field={field}
 		fieldName="image"

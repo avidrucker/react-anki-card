@@ -1,27 +1,28 @@
 import React, { Fragment } from 'react';
 
-import BlockImage from './BlockImage';
-import BlockElement from './BlockElement';
+import DivImage from './DivImage';
+import DivElement from './DivElement';
 import {withLabel} from '../Contexts/label-context';
 import {forExport} from '../Contexts/export-context';
 import {withTheme} from '../Contexts/theme-context';
-const ExtendedImage = forExport(withLabel(withTheme(BlockImage)));
-const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
+const ExtImage = forExport(withLabel(withTheme(DivImage)));
+const ExtDivElement = forExport(withLabel(withTheme(DivElement)));
 
-const GroupA11yImage = ({imageAddClass, imageField, imageLabelName,
+const GroupA11yImage = ({imgClass, imageField, imageLabelName,
     imageFieldName, textFieldName, textAddClass, captionText}) => {
   return (
     <Fragment>
-      <ExtendedImage
-        additionalClass={imageAddClass}
+      <ExtImage
+        imgClass={imgClass}
         labelName={imageLabelName}
         fieldName={imageFieldName}
-        resource={imageField}
+        field={imageField}
       />
-      <ExtendedBlockElement
-    		labelName={imageLabelName + " Accessibility Text"}
+      <ExtDivElement
+        colorRank="secondary-color"
+    		labelName={imageLabelName + " A11y Text"}
     		size="small"
-    		additionalClass="text-accessibility"
+    		elClass="text-a11y"
     		importance="low"
     		field={captionText}
         fieldName={textFieldName}

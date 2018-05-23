@@ -37,16 +37,16 @@ html {
 	font-size: 2em; /*desktop testing recommended is 2.5em*/
 }
 
-.primary-color.pastel-chalk-text { color: var(--chalk-yellow) }
+.primary-color.chalk-text { color: var(--chalk-yellow) }
 .primary-color.zenburn-text {	color: var(--zenburn-bright-yellow) }
 
-.secondary-color.pastel-chalk-text { color: var(--chalk-lightblue) }
+.secondary-color.chalk-text { color: var(--chalk-lightblue) }
 .secondary-color.zenburn-text {	color: var(--zenburn-cyan) }
 
-.tertiary-color.pastel-chalk-text { color: var(--chalk-lightgreen) }
+.tertiary-color.chalk-text { color: var(--chalk-lightgreen) }
 .tertiary-color.zenburn-text { color: var(--zenburn-muted-green) }
 
-.quaternary-color.pastel-chalk-text {	color: var(--chalk-salmon) }
+.quaternary-color.chalk-text {	color: var(--chalk-salmon) }
 .quaternary-color.zenburn-text { color: var(--zenburn-salmon) }
 
 .anki-card-entire {
@@ -54,50 +54,19 @@ html {
 	padding: 1em;
 }
 
-.anki-card-image {
-	position: relative;
-}
+.anki-card-image { position: relative }
+.sign-language-image { height: 12em }
+.linja-pona { height: 4em }
+.field-image { height: 4em }
+.example-image { height: 6em }
 
-.sign-language-image {
-	height: 8em;
-}
+div.big div span { font-size: 2em }
+div.small div span { font-size: 0.75em }
+div.low div span.transparency-enabled { opacity: 0.5 }
+div.high div span { font-weight: 600 }
 
-.linja-pona {
-	height: 4em;
-}
-
-.field-image {
-	height: 4em;
-}
-
-.example-image {
-	height: 6em;
-}
-
-.big {
-	font-size: 2em;
-}
-
-.small {
-	font-size: 0.75em;
-}
-
-/*todo: change this so it only activates for zen-light (and zen-dark?) theme(s)*/
-.transparency-enabled .low {
-	opacity: 0.5;
-}
-
-.high {
-	font-weight: 600
-}
-
-.card-element {
-	position: relative;
-}
-
-.card-element-line {
-	position: relative;
-}
+.card-element { position: relative }
+.card-element-line { position: relative }
 
 /*MARGINS & PADDING BEGIN*/
 .anki-card-audio, .card-element, .card-element-line, .anki-card-image, .card-element-span {
@@ -106,9 +75,7 @@ html {
 }
 /*MARGINS & PADDING END*/
 
-.danger {
-	color: red;
-}
+.danger { color: red }
 
 .component-label {
 	font-size: 0.5rem;
@@ -119,30 +86,36 @@ html {
 	background-color: lightgray;
 }
 
-.outline {
-	background-color: transparent;
-}
+.outline { background-color: transparent }
 
 .zenburn-bg2 {
 	background-color: var(--zenburn-bg2);
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
-.outline.pastel-chalk-text {
-	border: 1px solid var(--chalk-muted-white);
-}
+.outline.chalk-text { border: 1px solid var(--chalk-muted-white) }
 
-
-.component-label.outline.primary-color.pastel-chalk-text  { border: 1px solid var(--chalk-yellow) }
-.component-label.outline.primary-color.zenburn-text  { border: 1px solid var(--zenburn-bright-yellow) }
-.component-label.outline.secondary-color.pastel-chalk-text  { border: 1px solid var(--chalk-lightblue) }
-.component-label.outline.secondary-color.zenburn-text  { border: 1px solid var(--zenburn-cyan) }
-.component-label.outline.tertiary-color.pastel-chalk-text  { border: 1px solid var(--chalk-lightgreen) }
-.component-label.outline.tertiary-color.zenburn-text  { border: 1px solid var(--zenburn-muted-green) }
-.component-label.outline.quaternary-color.pastel-chalk-text  { border: 1px solid var(--chalk-salmon) }
-.component-label.outline.quaternary-color.zenburn-text  { border: 1px solid var(--zenburn-salmon) }
+.outline.primary-color.chalk-text  { border: 1px solid var(--chalk-yellow) }
+.outline.primary-color.zenburn-text  { border: 1px solid var(--zenburn-bright-yellow) }
+.outline.secondary-color.chalk-text  { border: 1px solid var(--chalk-lightblue) }
+.outline.secondary-color.zenburn-text  { border: 1px solid var(--zenburn-cyan) }
+.outline.tertiary-color.chalk-text  { border: 1px solid var(--chalk-lightgreen) }
+.outline.tertiary-color.zenburn-text  { border: 1px solid var(--zenburn-muted-green) }
+.outline.quaternary-color.chalk-text  { border: 1px solid var(--chalk-salmon) }
+.outline.quaternary-color.zenburn-text  { border: 1px solid var(--zenburn-salmon) }
 
 .play-button {
-	font-size: 50px;
+	display: inline-block;
+	position: relative;
+	font-size: 3em;
+	line-height: 0.8em;
+	padding-left: 2.5px;
+	padding-right: 2.5px;
+}
+
+.vert-cent {
+	vertical-align:middle;
 }
 
 .full-height-bg img {
@@ -163,21 +136,6 @@ html {
   left: 0;
 }
 
-/*blackboard theme colors*/
-/*
-.component-label { }
-.play-button { }
-.field-term { color: var(--chalk-yellow) }
-.field-examples { color: var(--chalk-lightblue) }
-.field-transliteration { }
-.text-prompt { color: var(--chalk-lightgreen) }
-.tags { color: var(--chalk-lightgreen) }
-.special-field-category { color: var(--chalk-lightgreen) }
-*/
-
-/*testing*/
-.field-examples { /*background-color: var(--chalk-salmon)*/ }
-
 /*uncomment below for wire-frames*/
 /*WIREFRAMES START*/
 /*
@@ -189,9 +147,8 @@ html {
 */
 /*WIREFRAMES END*/
 
-.default-text.pastel-chalk-text { color: var(--chalk-muted-white) }
+.default-text.chalk-text { color: var(--chalk-muted-white) }
 .default-text.zenburn-text { color: var(--zenburn-default) }
-
 
 .zenburn-bg { background-color: var(--zenburn-bg) }
 .blackboard-bg { background-color: var(--blackboard-bg-fallback) }

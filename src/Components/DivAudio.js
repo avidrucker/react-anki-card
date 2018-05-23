@@ -6,13 +6,15 @@ import {withTheme} from '../Contexts/theme-context';
 const ThemedLabel = withTheme(ELLabel);
 
 /*use to show 1+ audio clips & their play buttons*/
-const BlockAudio = ({colorRank, elClass, field, fieldName, importance,
+const DivAudio = ({colorRank, field, fieldName, importance,
 	isForExport, labelName, labelOn, size, theme}) => {
-		const elStyle = (theme === "black-board") ? "pastel-chalk-text" : (theme === "zenburn" ? "zenburn-text" : "");
+		const elStyle = (theme === "black-board") ? "chalk-text" :
+			(theme === "zenburn" ? "zenburn-text" : "");
 		const spanStyle = (theme === "zenburn") ? "zenburn-bg2" : "";
 
 	return (
-		<div className={`card-element ${elStyle} ${size} ${importance} ${colorRank}`}>
+		<div className={`card-element ${colorRank} ${elStyle}
+				${importance} ${size}`}>
 			{
 				!!labelOn &&
 				<ThemedLabel
@@ -20,7 +22,7 @@ const BlockAudio = ({colorRank, elClass, field, fieldName, importance,
 					colorRank={colorRank}
 				/>
 			}
-			<div className={`card-element-line anki-card-audio`}>
+			<div className={`card-element-line`}>
 				{!isForExport && field.split("\n").map(i => {
 					return (
 					<SpanAudio
@@ -32,7 +34,7 @@ const BlockAudio = ({colorRank, elClass, field, fieldName, importance,
 				})}
 				{
 					!!isForExport &&
-					<div className={`card-element-line anki-card-audio`}>
+					<div className={`card-element-line`}>
 						<span>
 							{`{{${fieldName}}}`}
 						</span>
@@ -43,4 +45,4 @@ const BlockAudio = ({colorRank, elClass, field, fieldName, importance,
 	)
 };
 
-export default BlockAudio;
+export default DivAudio;

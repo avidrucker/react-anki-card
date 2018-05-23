@@ -1,14 +1,14 @@
 import React from 'react';
 
-import BlockElement from './BlockElement';
+import DivElement from './DivElement';
 import {withLabel} from '../Contexts/label-context';
 import {forExport} from '../Contexts/export-context';
 import {withTheme} from '../Contexts/theme-context';
-const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
+const ExtDivElement = forExport(withLabel(withTheme(DivElement)));
 
 /*high level block component that correlates directly with term field */
 const ELTermOnly = ({colorRank, elClass, field, hintedOut, importance, size}) => (
-	<ExtendedBlockElement
+	<ExtDivElement
 		colorRank={colorRank}
 		elClass={`card-term-only`}
 		field={field}

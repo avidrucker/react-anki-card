@@ -1,15 +1,14 @@
 import React from 'react';
 
-import BlockElement from './BlockElement';
+import DivElement from './DivElement';
 import {withLabel} from '../Contexts/label-context';
 import {forExport} from '../Contexts/export-context';
 import {withTheme} from '../Contexts/theme-context';
-const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
+const ExtDivElement = forExport(withLabel(withTheme(DivElement)));
 
 /*use this component to mark element blocks (primarily for testing) */
 const ELMnemonic = ({colorRank, field, hintedOut, importance, size}) => (
-  // labelName, size, isForExport
-  <ExtendedBlockElement
+  <ExtDivElement
     colorRank={colorRank}
     elClass="el-mnemonic"
     fieldName="mnemonic"

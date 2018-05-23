@@ -1,13 +1,13 @@
 import React from 'react';
 
-import BlockElement from './BlockElement';
+import DivElement from './DivElement';
 import {withLabel} from '../Contexts/label-context';
 import {forExport} from '../Contexts/export-context';
 import {withTheme} from '../Contexts/theme-context';
-const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
+const ExtDivElement = forExport(withLabel(withTheme(DivElement)));
 
 const ELPrompt = ({colorRank, importance, size, text}) => (
-	<ExtendedBlockElement
+	<ExtDivElement
 		elClass={`el-front-prompt`}
 		colorRank={colorRank}
 		labelName="Card Prompt"

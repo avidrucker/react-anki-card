@@ -1,13 +1,13 @@
 import React from 'react';
 
-import BlockImage from './BlockImage';
+import DivImage from './DivImage';
 import {withLabel} from '../Contexts/label-context';
 import {forExport} from '../Contexts/export-context';
 import {withTheme} from '../Contexts/theme-context';
-const ExtendedImage = forExport(withLabel(withTheme(BlockImage)));
+const ExtImage = forExport(withLabel(withTheme(DivImage)));
 
-const ELExampleImage = ({colorRank, field}) => (
-	<ExtendedImage
+const ELEgImage = ({colorRank, field}) => (
+	<ExtImage
 		imgClass="example-image"
 		colorRank={colorRank}
 		field={field}
@@ -17,4 +17,4 @@ const ELExampleImage = ({colorRank, field}) => (
 	/>
 );
 
-export default ELExampleImage;
+export default ELEgImage;

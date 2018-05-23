@@ -1,14 +1,14 @@
 import React from 'react';
 
-import BlockElement from './BlockElement';
+import DivElement from './DivElement';
 import {withLabel} from '../Contexts/label-context';
 import {forExport} from '../Contexts/export-context';
 import {withTheme} from '../Contexts/theme-context';
-const ExtendedBlockElement = forExport(withLabel(withTheme(BlockElement)));
+const ExtDivElement = forExport(withLabel(withTheme(DivElement)));
 
 /* the English (L1) translation of L2 term*/
 const ELTranslation = ({colorRank, elClass, field, hintedOut, importance, size}) => (
-	<ExtendedBlockElement
+	<ExtDivElement
 		colorRank={colorRank}
 		elClass="field-translation"
 		field={field}
@@ -16,7 +16,7 @@ const ELTranslation = ({colorRank, elClass, field, hintedOut, importance, size})
 		hintedOut={hintedOut}
 		importance={!importance ? "low" : importance}
 		labelName="English Translation"
-		size={!size ? "regular" : size}
+		size={!size ? "small" : size}
 	/>
 );
 
