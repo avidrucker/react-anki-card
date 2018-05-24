@@ -19,7 +19,7 @@ import ELTags from './Components/ELTags';
 import ELMnemonic from './Components/ELMnemonic';
 
 import PROMPTS from './toki_pona_prompts.json';
-import blackboard1 from './board1.jpg';
+import blackboard1 from './Backgrounds/board1.jpg';
 
 const READ_PROMPT = PROMPTS.tokiPonaPrompts.readLP.L1;
 const READ_PROMPT2 = PROMPTS.tokiPonaPrompts.readTranslit.L1;
