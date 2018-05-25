@@ -9,14 +9,14 @@ const SpanImage = ({imgClass, imgAlt, fieldName, resource}) => {
 
 	if(resource === undefined || resource === "") {
 		return (
-			<span className={`card-element-span danger`}>
+			<span key="tree" className={`card-element-span danger`}>
 				{`${fieldName} field missing!`}
 			</span>
 		);
 	}
 	else {
 		images = resource.split("\n").map(image => {
-	     return <span className={`card-element-span`}>
+	     return <span key={image+500} className={`card-element-span`}>
 				 <img
 				 	key={image+400}
 					src={require(`../Images/${image}`)}

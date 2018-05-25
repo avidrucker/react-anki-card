@@ -13,13 +13,13 @@ import {ExportContext} from './Contexts/export-context';
 import {ThemeContext} from './Contexts/theme-context';
 
 const CARD_INDEX = 2; //TEST: 0=="ali", 1=="ijo", 2=="ilo"
-const TYPE_INDEX = 0;
+const TYPE_INDEX = 4;
 /*TEST: 0=="look", 1=="hear", 2=="readLP",3=="readTranslit",
 4=="recall", 5=="writeDictation", 6=="readSign", 7=="makeSign",
 8=="describePicture", 9=="mnemonic"*/
 //const PROMPT_INDEX = 0; //0==english(L1), 1==toki pona (l2) //todo: delegate this to "immersion mode"
 const LANG_INDEX = 0; //TEST 0=="Japanese", 1=="toki pona", 2=="Hebrew"
-const THEME_INDEX = 2;
+const THEME_INDEX = 3;
 const LABEL_ON = true; //formerly SHOW_ELEMENT_NAME
 const IS_FOR_EXPORT = false; //formerly EXPORT_MODE
 

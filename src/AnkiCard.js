@@ -20,6 +20,7 @@ import ELMnemonic from './Components/ELMnemonic';
 
 import PROMPTS from './toki_pona_prompts.json';
 import blackboard1 from './Backgrounds/board1.jpg';
+import index1 from './Backgrounds/index1.jpg';
 
 const READ_PROMPT = PROMPTS.tokiPonaPrompts.readLP.L1;
 const READ_PROMPT2 = PROMPTS.tokiPonaPrompts.readTranslit.L1;
@@ -285,7 +286,17 @@ class AnkiCard extends Component {
             theme === "black-board" &&
             <ThemedBackground
               imgAlt="blackboard image"
+              bgClass="full-noscroll"
               resourceImg={blackboard1}
+              theme={theme}
+            />
+          }
+          {
+            theme === "index-card" &&
+            <ThemedBackground
+              imgAlt="index card image"
+              bgClass="full-scroll"
+              resourceImg={index1}
               theme={theme}
             />
           }
