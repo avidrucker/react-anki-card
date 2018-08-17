@@ -7,7 +7,7 @@ export const inLang = (Component) => {
       <LangContext.Consumer>
         {
           lang =>  {
-            return <Component {...props} la={lang} />
+            return <Component {...props} lang={lang} />
           }
         }
       </LangContext.Consumer>
