@@ -63,7 +63,7 @@ function updateModel(model, cardType, template) {
     console.log(`Card type ${cardType} not found. Skipping.`);
     return;
   }
-  model.tmpls[index].bqfmt = template;
+  model.tmpls[index].afmt = template;
   console.log(`Card type ${cardType} updated.`);
 }
 
