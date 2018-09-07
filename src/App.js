@@ -25,7 +25,7 @@ const LABEL_ON = true; //formerly SHOW_ELEMENT_NAME
 const IS_FOR_EXPORT = false; //formerly EXPORT_MODE
 
 const LANGS = ["Japanese","toki pona","Hebrew"];
-const CARD_TYPES = ["look","hear","TPreadLP", "TPreadTranslit",
+export const CARD_TYPES = ["look","hear","TPreadLP", "TPreadTranslit",
     "recall","TPwriteDictation","readSign","makeSign","describePicture", "mnemonic"];
 const THEMES = ["zen-light","zenburn","black-board","index-card","zen-dark","beautiful-photo"];
 
@@ -39,10 +39,10 @@ class App extends Component {
     return (
       <div className="App">
         <LangContext.Provider value={LANG}>
-          <ExportContext.Provider value={IS_FOR_EXPORT}>
+          <ExportContext.Provider value={this.props.forExport || IS_FOR_EXPORT}>
       			<LabelContext.Provider value={LABEL_ON}>
               <ThemeContext.Provider value={THEME}>
-                <Content />
+                <Content cardType={this.props.cardType} />
               </ThemeContext.Provider>
       			</LabelContext.Provider>
           </ExportContext.Provider>
@@ -52,12 +52,12 @@ class App extends Component {
 	}
 }
 
-function Content() {
+function Content(props) {
 	return (
 		<AnkiCard
 			card={CARD}
 			cardLang={LANG}
-			cardType={CARD_TYPE}
+			cardType={props.cardType || CARD_TYPE}
 			theme = {THEME}
 		/>
 	);
